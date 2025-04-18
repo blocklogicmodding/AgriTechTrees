@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "agritechtrees:block/agritech_trees_planter_block"
+    }
+  }
+}

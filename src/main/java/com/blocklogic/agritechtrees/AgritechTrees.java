@@ -1,5 +1,14 @@
 package com.blocklogic.agritechtrees;
 
+import com.blocklogic.agritechtrees.block.ModBlocks;
+import com.blocklogic.agritechtrees.block.entity.ModBlockEntities;
+import com.blocklogic.agritechtrees.block.entity.renderer.AgritechTreesPlanterBlockEntityRenderer;
+import com.blocklogic.agritechtrees.screen.custom.AgritechTreesPlanterScreen;
+import com.blocklogic.agritechtrees.item.ModCreativeModeTabs;
+import com.blocklogic.agritechtrees.item.ModItems;
+import com.blocklogic.agritechtrees.screen.ModMenuTypes;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -46,6 +55,12 @@ public class AgritechTrees
 
         NeoForge.EVENT_BUS.register(this);
 
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModCreativeModeTabs.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
         modEventBus.addListener(this::addCreative);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -53,15 +68,7 @@ public class AgritechTrees
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
 
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
@@ -82,6 +89,16 @@ public class AgritechTrees
         public static void onClientSetup(FMLClientSetupEvent event)
         {
 
+        }
+
+        @SubscribeEvent
+        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntities.AGRITECH_TREES_PLANTER_BLOCK_ENTITY.get(), AgritechTreesPlanterBlockEntityRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.AGRITECH_TREES_PLANTER_MENU.get(), AgritechTreesPlanterScreen::new);
         }
     }
 }

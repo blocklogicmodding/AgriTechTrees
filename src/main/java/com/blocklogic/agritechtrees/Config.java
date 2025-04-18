@@ -1,47 +1,38 @@
 package com.blocklogic.agritechtrees;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
+import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-// An example config class. This is not required, but it's a good idea to have one to keep your config organized.
-// Demonstrates how to use Neo's config APIs
 @EventBusSubscriber(modid = AgritechTrees.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class Config
 {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-    private static final ModConfigSpec.BooleanValue LOG_DIRT_BLOCK = BUILDER
-            .comment("Whether to log the dirt block on common setup")
-            .define("logDirtBlock", true);
 
-    private static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
-            .comment("A magic number")
-            .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
+    private static final ModConfigSpec.BooleanValue MESSAGE = BUILDER
+            .comment("INFO: If you change any of the values below, delete 'config/agritechtrees/saplings_and_soils.json' and restart your client to regenerate the crop config!")
+            .define("infoIs", true);
 
-    public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
-            .comment("What you want the introduction message to be for the magic number")
-            .define("magicNumberIntroduction", "The magic number is... ");
+    // Mod compatibility section
+    private static final ModConfigSpec.BooleanValue ENABLE_BIOMES_O_PLENTY = BUILDER
+            .comment("Enable Biomes 'O Plenty. Default: true")
+            .define("enableTwilightForest", true);
 
-    // a list of strings that are treated as resource locations for items
-    private static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
-            .comment("A list of items to log on common setup.")
-            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
+    private static final ModConfigSpec.BooleanValue ENABLE_TWILIGHT_FOREST = BUILDER
+            .comment("Enable Twilight Forest. Default: true")
+            .define("enableBiomesOPlenty", true);
+
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
-    public static boolean logDirtBlock;
-    public static int magicNumber;
-    public static String magicNumberIntroduction;
-    public static Set<Item> items;
+    public static boolean enableBiomesOPlenty;
+    public static boolean enableTwilightForest;
 
     private static boolean validateItemName(final Object obj)
     {
@@ -51,13 +42,9 @@ public class Config
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
     {
-        logDirtBlock = LOG_DIRT_BLOCK.get();
-        magicNumber = MAGIC_NUMBER.get();
-        magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();
+        enableBiomesOPlenty = ENABLE_BIOMES_O_PLENTY.get() && ModList.get().isLoaded("biomesoplenty");
+        enableTwilightForest = ENABLE_TWILIGHT_FOREST.get() && ModList.get().isLoaded("twilightforest");
 
-        // convert the list of strings into a set of items
-        items = ITEM_STRINGS.get().stream()
-                .map(itemName -> BuiltInRegistries.ITEM.get(ResourceLocation.parse(itemName)))
-                .collect(Collectors.toSet());
+        AgritechTreesConfig.loadConfig();
     }
 }

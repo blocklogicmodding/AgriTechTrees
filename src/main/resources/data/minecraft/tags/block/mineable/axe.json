@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "agritechtrees:agritech_trees_planter_block",
+    "agritechtrees:agritech_trees_hopping_planter_block"
+  ]
+}
