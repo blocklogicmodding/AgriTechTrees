@@ -58,14 +58,44 @@ public class AgritechTreesConfig {
 
         addVanillaTrees(defaultTrees);
 
-        if (Config.enableBiomesOPlenty) {
-            LOGGER.info("Adding Biomes O' Plenty trees to AgriTech config");
-            addBiomesOPlentyTrees(defaultTrees);
+        if (Config.enableArsElemental) {
+            LOGGER.info("Adding Ars Nouveau Archwood trees to AgriTech Trees config");
+            addArsElementalTrees(defaultTrees);
+        }
+
+        if (Config.enableArsNouveau) {
+            LOGGER.info("Adding Ars Nouveau Archwood trees to AgriTech Trees config");
+            addArsNouveauTrees(defaultTrees);
         }
 
         if (Config.enableTwilightForest) {
-            LOGGER.info("Adding Twilight Forest trees to AgriTech config");
+            LOGGER.info("Adding Twilight Forest trees to AgriTech Trees config");
             addTwilightForestTrees(defaultTrees);
+        }
+
+        if (Config.enableEvilCraft) {
+            LOGGER.info("Adding Evilcraft trees to AgriTech Trees config");
+            addEvilCraftTrees(defaultTrees);
+        }
+
+        if (Config.enableForbiddenArcanus) {
+            LOGGER.info("Adding Forbidden Arcanus trees to AgriTech Trees config");
+            addForbiddenArcanusTrees(defaultTrees);
+        }
+
+        if (Config.enableIntegratedDynamics) {
+            LOGGER.info("Adding Menril trees to AgriTech Trees config");
+            addIntegratedDynamicsTrees(defaultTrees);
+        }
+
+        if (Config.enableOccultism) {
+            LOGGER.info("Adding Occultism trees to AgriTech Trees config");
+            addOccultismTrees(defaultTrees);
+        }
+
+        if (Config.enableHexerei) {
+            LOGGER.info("Adding Hexerei trees to AgriTech Trees config");
+            addHexereiTrees(defaultTrees);
         }
 
         config.allowedTrees = defaultTrees;
@@ -87,15 +117,13 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block"
+                "minecraft:mycelium"
         );
         oak.drops = new ArrayList<>();
 
         DropEntry oakLogDrop = new DropEntry();
         oakLogDrop.item = "minecraft:oak_log";
-        oakLogDrop.count = new CountRange(3, 6);
+        oakLogDrop.count = new CountRange(2, 6);
         oak.drops.add(oakLogDrop);
 
         DropEntry oakSaplingDrop = new DropEntry();
@@ -106,14 +134,14 @@ public class AgritechTreesConfig {
 
         DropEntry stickDrop = new DropEntry();
         stickDrop.item = "minecraft:stick";
-        stickDrop.count = new CountRange(2, 4);
-        stickDrop.chance = 0.8f;
+        stickDrop.count = new CountRange(1, 2);
+        stickDrop.chance = 0.5f;
         oak.drops.add(stickDrop);
 
         DropEntry appleDrop = new DropEntry();
         appleDrop.item = "minecraft:apple";
         appleDrop.count = new CountRange(1, 1);
-        appleDrop.chance = 0.1f;
+        appleDrop.chance = 0.4f;
         oak.drops.add(appleDrop);
 
         trees.add(oak);
@@ -126,15 +154,13 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block"
+                "minecraft:mycelium"
         );
         birch.drops = new ArrayList<>();
 
         DropEntry birchLogDrop = new DropEntry();
         birchLogDrop.item = "minecraft:birch_log";
-        birchLogDrop.count = new CountRange(3, 6);
+        birchLogDrop.count = new CountRange(2, 6);
         birch.drops.add(birchLogDrop);
 
         DropEntry birchSaplingDrop = new DropEntry();
@@ -145,8 +171,8 @@ public class AgritechTreesConfig {
 
         DropEntry birchStickDrop = new DropEntry();
         birchStickDrop.item = "minecraft:stick";
-        birchStickDrop.count = new CountRange(2, 4);
-        birchStickDrop.chance = 0.8f;
+        birchStickDrop.count = new CountRange(1, 2);
+        birchStickDrop.chance = 0.5f;
         birch.drops.add(birchStickDrop);
 
         trees.add(birch);
@@ -159,9 +185,7 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block"
+                "minecraft:mycelium"
         );
         spruce.drops = new ArrayList<>();
 
@@ -178,8 +202,8 @@ public class AgritechTreesConfig {
 
         DropEntry spruceStickDrop = new DropEntry();
         spruceStickDrop.item = "minecraft:stick";
-        spruceStickDrop.count = new CountRange(2, 4);
-        spruceStickDrop.chance = 0.8f;
+        spruceStickDrop.count = new CountRange(1, 2);
+        spruceStickDrop.chance = 0.5f;
         spruce.drops.add(spruceStickDrop);
 
         trees.add(spruce);
@@ -192,15 +216,13 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block"
+                "minecraft:mycelium"
         );
         jungle.drops = new ArrayList<>();
 
         DropEntry jungleLogDrop = new DropEntry();
         jungleLogDrop.item = "minecraft:jungle_log";
-        jungleLogDrop.count = new CountRange(4, 7);
+        jungleLogDrop.count = new CountRange(2, 6);
         jungle.drops.add(jungleLogDrop);
 
         DropEntry jungleSaplingDrop = new DropEntry();
@@ -211,8 +233,8 @@ public class AgritechTreesConfig {
 
         DropEntry jungleStickDrop = new DropEntry();
         jungleStickDrop.item = "minecraft:stick";
-        jungleStickDrop.count = new CountRange(2, 5);
-        jungleStickDrop.chance = 0.8f;
+        jungleStickDrop.count = new CountRange(1, 2);
+        jungleStickDrop.chance = 0.5f;
         jungle.drops.add(jungleStickDrop);
 
         DropEntry cocoaBeanDrop = new DropEntry();
@@ -231,16 +253,13 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block",
-                "minecraft:red_sand"
+                "minecraft:mycelium"
         );
         acacia.drops = new ArrayList<>();
 
         DropEntry acaciaLogDrop = new DropEntry();
         acaciaLogDrop.item = "minecraft:acacia_log";
-        acaciaLogDrop.count = new CountRange(3, 6);
+        acaciaLogDrop.count = new CountRange(2, 6);
         acacia.drops.add(acaciaLogDrop);
 
         DropEntry acaciaSaplingDrop = new DropEntry();
@@ -251,8 +270,8 @@ public class AgritechTreesConfig {
 
         DropEntry acaciaStickDrop = new DropEntry();
         acaciaStickDrop.item = "minecraft:stick";
-        acaciaStickDrop.count = new CountRange(2, 4);
-        acaciaStickDrop.chance = 0.8f;
+        acaciaStickDrop.count = new CountRange(1, 2);
+        acaciaStickDrop.chance = 0.5f;
         acacia.drops.add(acaciaStickDrop);
 
         trees.add(acacia);
@@ -265,15 +284,13 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block"
+                "minecraft:mycelium"
         );
         darkOak.drops = new ArrayList<>();
 
         DropEntry darkOakLogDrop = new DropEntry();
         darkOakLogDrop.item = "minecraft:dark_oak_log";
-        darkOakLogDrop.count = new CountRange(4, 7);
+        darkOakLogDrop.count = new CountRange(4, 8);
         darkOak.drops.add(darkOakLogDrop);
 
         DropEntry darkOakSaplingDrop = new DropEntry();
@@ -284,14 +301,14 @@ public class AgritechTreesConfig {
 
         DropEntry darkOakStickDrop = new DropEntry();
         darkOakStickDrop.item = "minecraft:stick";
-        darkOakStickDrop.count = new CountRange(2, 4);
-        darkOakStickDrop.chance = 0.8f;
+        darkOakStickDrop.count = new CountRange(1, 2);
+        darkOakStickDrop.chance = 0.5f;
         darkOak.drops.add(darkOakStickDrop);
 
         DropEntry appleDarkOakDrop = new DropEntry();
         appleDarkOakDrop.item = "minecraft:apple";
         appleDarkOakDrop.count = new CountRange(1, 2);
-        appleDarkOakDrop.chance = 0.15f;
+        appleDarkOakDrop.chance = 0.3f;
         darkOak.drops.add(appleDarkOakDrop);
 
         trees.add(darkOak);
@@ -300,17 +317,19 @@ public class AgritechTreesConfig {
         TreeEntry mangrove = new TreeEntry();
         mangrove.sapling = "minecraft:mangrove_propagule";
         mangrove.validSoils = List.of(
-                "minecraft:dirt",
-                "minecraft:grass_block",
                 "minecraft:mud",
                 "minecraft:muddy_mangrove_roots",
-                "minecraft:moss_block"
+                "minecraft:dirt",
+                "minecraft:coarse_dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:mycelium"
         );
         mangrove.drops = new ArrayList<>();
 
         DropEntry mangroveLogDrop = new DropEntry();
         mangroveLogDrop.item = "minecraft:mangrove_log";
-        mangroveLogDrop.count = new CountRange(3, 6);
+        mangroveLogDrop.count = new CountRange(2, 6);
         mangrove.drops.add(mangroveLogDrop);
 
         DropEntry mangrovePropaguleDrop = new DropEntry();
@@ -322,8 +341,14 @@ public class AgritechTreesConfig {
         DropEntry mangroveRootsDrop = new DropEntry();
         mangroveRootsDrop.item = "minecraft:mangrove_roots";
         mangroveRootsDrop.count = new CountRange(1, 3);
-        mangroveRootsDrop.chance = 0.6f;
+        mangroveRootsDrop.chance = 0.3f;
         mangrove.drops.add(mangroveRootsDrop);
+
+        DropEntry mangroveStickDrop = new DropEntry();
+        mangroveStickDrop.item = "minecraft:mangrove_roots";
+        mangroveStickDrop.count = new CountRange(1, 2);
+        mangroveStickDrop.chance = 0.5f;
+        mangrove.drops.add(mangroveStickDrop);
 
         trees.add(mangrove);
 
@@ -335,15 +360,13 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block"
+                "minecraft:mycelium"
         );
         cherry.drops = new ArrayList<>();
 
         DropEntry cherryLogDrop = new DropEntry();
         cherryLogDrop.item = "minecraft:cherry_log";
-        cherryLogDrop.count = new CountRange(3, 6);
+        cherryLogDrop.count = new CountRange(2, 6);
         cherry.drops.add(cherryLogDrop);
 
         DropEntry cherrySaplingDrop = new DropEntry();
@@ -354,8 +377,8 @@ public class AgritechTreesConfig {
 
         DropEntry cherryStickDrop = new DropEntry();
         cherryStickDrop.item = "minecraft:stick";
-        cherryStickDrop.count = new CountRange(2, 4);
-        cherryStickDrop.chance = 0.8f;
+        cherryStickDrop.count = new CountRange(1, 2);
+        cherryStickDrop.chance = 0.5f;
         cherry.drops.add(cherryStickDrop);
 
         trees.add(cherry);
@@ -369,8 +392,8 @@ public class AgritechTreesConfig {
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
                 "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block"
+                "minecraft:moss_block",
+                "minecraft:mycelium"
         );
         azalea.drops = new ArrayList<>();
 
@@ -387,14 +410,14 @@ public class AgritechTreesConfig {
 
         DropEntry azaleaStickDrop = new DropEntry();
         azaleaStickDrop.item = "minecraft:stick";
-        azaleaStickDrop.count = new CountRange(1, 3);
-        azaleaStickDrop.chance = 0.8f;
+        azaleaStickDrop.count = new CountRange(1, 2);
+        azaleaStickDrop.chance = 0.5f;
         azalea.drops.add(azaleaStickDrop);
 
         DropEntry mossBlockDrop = new DropEntry();
         mossBlockDrop.item = "minecraft:moss_block";
         mossBlockDrop.count = new CountRange(1, 2);
-        mossBlockDrop.chance = 0.3f;
+        mossBlockDrop.chance = 0.2f;
         azalea.drops.add(mossBlockDrop);
 
         trees.add(azalea);
@@ -408,8 +431,8 @@ public class AgritechTreesConfig {
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
                 "minecraft:rooted_dirt",
-                "minecraft:mud",
-                "minecraft:moss_block"
+                "minecraft:moss_block",
+                "minecraft:mycelium"
         );
         floweringAzalea.drops = new ArrayList<>();
 
@@ -426,78 +449,609 @@ public class AgritechTreesConfig {
 
         DropEntry floweringAzaleaStickDrop = new DropEntry();
         floweringAzaleaStickDrop.item = "minecraft:stick";
-        floweringAzaleaStickDrop.count = new CountRange(1, 3);
-        floweringAzaleaStickDrop.chance = 0.8f;
+        floweringAzaleaStickDrop.count = new CountRange(1, 2);
+        floweringAzaleaStickDrop.chance = 0.5f;
         floweringAzalea.drops.add(floweringAzaleaStickDrop);
 
         DropEntry floweringAzaleaMossBlockDrop = new DropEntry();
         floweringAzaleaMossBlockDrop.item = "minecraft:moss_block";
-        floweringAzaleaMossBlockDrop.count = new CountRange(1, 2);
-        floweringAzaleaMossBlockDrop.chance = 0.3f;
+        floweringAzaleaMossBlockDrop.count = new CountRange(1, 1);
+        floweringAzaleaMossBlockDrop.chance = 0.2f;
         floweringAzalea.drops.add(floweringAzaleaMossBlockDrop);
 
         trees.add(floweringAzalea);
     }
 
-    private static void addBiomesOPlentyTrees(List<TreeEntry> trees) {
-        // Example implementation for BOP trees
-        // This would need to be customized based on the actual mod's content
-
-        // Fir Sapling
-        TreeEntry fir = new TreeEntry();
-        fir.sapling = "biomesoplenty:fir_sapling";
-        fir.validSoils = List.of(
+    private static void addArsElementalTrees(List<TreeEntry> trees) {
+        // Yellow Archwood Tree
+        TreeEntry yellowArchwood = new TreeEntry();
+        yellowArchwood.sapling = "ars_elemental:yellow_archwood_sapling";
+        yellowArchwood.validSoils = List.of(
                 "minecraft:dirt",
                 "minecraft:grass_block",
                 "minecraft:podzol",
-                "minecraft:coarse_dirt"
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
         );
-        fir.drops = new ArrayList<>();
+        yellowArchwood.drops = new ArrayList<>();
 
-        DropEntry firLogDrop = new DropEntry();
-        firLogDrop.item = "biomesoplenty:fir_log";
-        firLogDrop.count = new CountRange(4, 8);
-        fir.drops.add(firLogDrop);
+        DropEntry yellowArchwoodLogDrop = new DropEntry();
+        yellowArchwoodLogDrop.item = "ars_elemental:yellow_archwood_log";
+        yellowArchwoodLogDrop.count = new CountRange(4, 8);
+        yellowArchwood.drops.add(yellowArchwoodLogDrop);
 
-        DropEntry firSaplingDrop = new DropEntry();
-        firSaplingDrop.item = "biomesoplenty:fir_sapling";
-        firSaplingDrop.count = new CountRange(1, 2);
-        firSaplingDrop.chance = 0.5f;
-        fir.drops.add(firSaplingDrop);
+        DropEntry yellowArchwoodSaplingDrop = new DropEntry();
+        yellowArchwoodSaplingDrop.item = "ars_elemental:yellow_archwood_sapling";
+        yellowArchwoodSaplingDrop.count = new CountRange(1, 1);
+        yellowArchwoodSaplingDrop.chance = 0.3f;
+        yellowArchwood.drops.add(yellowArchwoodSaplingDrop);
 
-        trees.add(fir);
+        DropEntry yellowArchwoodPodDrop = new DropEntry();
+        yellowArchwoodPodDrop.item = "ars_elemental:flashpine_pod";
+        yellowArchwoodPodDrop.count = new CountRange(1, 1);
+        yellowArchwoodPodDrop.chance = 0.2f;
+        yellowArchwood.drops.add(yellowArchwoodPodDrop);
 
-        // Add more BOP trees as needed
+        DropEntry yellowArchwoodStickDrop = new DropEntry();
+        yellowArchwoodStickDrop.item = "minecraft:stick";
+        yellowArchwoodStickDrop.count = new CountRange(1, 2);
+        yellowArchwoodStickDrop.chance = 0.5f;
+        yellowArchwood.drops.add(yellowArchwoodStickDrop);
+
+        trees.add(yellowArchwood);
+    }
+
+    private static void addArsNouveauTrees(List<TreeEntry> trees) {
+        // Blue Archwood Tree
+        TreeEntry blueArchwood = new TreeEntry();
+        blueArchwood.sapling = "ars_nouveau:blue_archwood_sapling";
+        blueArchwood.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        blueArchwood.drops = new ArrayList<>();
+
+        DropEntry blueArchwoodLogDrop = new DropEntry();
+        blueArchwoodLogDrop.item = "ars_nouveau:blue_archwood_log";
+        blueArchwoodLogDrop.count = new CountRange(4, 8);
+        blueArchwood.drops.add(blueArchwoodLogDrop);
+
+        DropEntry blueArchwoodSaplingDrop = new DropEntry();
+        blueArchwoodSaplingDrop.item = "ars_nouveau:blue_archwood_sapling";
+        blueArchwoodSaplingDrop.count = new CountRange(1, 1);
+        blueArchwoodSaplingDrop.chance = 0.3f;
+        blueArchwood.drops.add(blueArchwoodSaplingDrop);
+
+        DropEntry blueArchwoodPodDrop = new DropEntry();
+        blueArchwoodPodDrop.item = "ars_nouveau:frostaya_pod";
+        blueArchwoodPodDrop.count = new CountRange(1, 1);
+        blueArchwoodPodDrop.chance = 0.2f;
+        blueArchwood.drops.add(blueArchwoodPodDrop);
+
+        DropEntry blueArchwoodStickDrop = new DropEntry();
+        blueArchwoodStickDrop.item = "minecraft:stick";
+        blueArchwoodStickDrop.count = new CountRange(1, 2);
+        blueArchwoodStickDrop.chance = 0.5f;
+        blueArchwood.drops.add(blueArchwoodStickDrop);
+
+        trees.add(blueArchwood);
+
+        // Red Archwood Tree
+        TreeEntry redArchwood = new TreeEntry();
+        redArchwood.sapling = "ars_nouveau:red_archwood_sapling";
+        redArchwood.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        redArchwood.drops = new ArrayList<>();
+
+        DropEntry redArchwoodLogDrop = new DropEntry();
+        redArchwoodLogDrop.item = "ars_nouveau:red_archwood_log";
+        redArchwoodLogDrop.count = new CountRange(4, 8);
+        redArchwood.drops.add(redArchwoodLogDrop);
+
+        DropEntry redArchwoodSaplingDrop = new DropEntry();
+        redArchwoodSaplingDrop.item = "ars_nouveau:red_archwood_sapling";
+        redArchwoodSaplingDrop.count = new CountRange(1, 1);
+        redArchwoodSaplingDrop.chance = 0.3f;
+        redArchwood.drops.add(redArchwoodSaplingDrop);
+
+        DropEntry redArchwoodPodDrop = new DropEntry();
+        redArchwoodPodDrop.item = "ars_nouveau:bombegranate_pod";
+        redArchwoodPodDrop.count = new CountRange(1, 1);
+        redArchwoodPodDrop.chance = 0.2f;
+        redArchwood.drops.add(redArchwoodPodDrop);
+
+        DropEntry redArchwoodStickDrop = new DropEntry();
+        redArchwoodStickDrop.item = "minecraft:stick";
+        redArchwoodStickDrop.count = new CountRange(1, 2);
+        redArchwoodStickDrop.chance = 0.5f;
+        redArchwood.drops.add(redArchwoodStickDrop);
+
+        trees.add(redArchwood);
+
+        // Purple Archwood Tree
+        TreeEntry purpleArchwood = new TreeEntry();
+        purpleArchwood.sapling = "ars_nouveau:purple_archwood_sapling";
+        purpleArchwood.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        purpleArchwood.drops = new ArrayList<>();
+
+        DropEntry purpleArchwoodLogDrop = new DropEntry();
+        purpleArchwoodLogDrop.item = "ars_nouveau:purple_archwood_log";
+        purpleArchwoodLogDrop.count = new CountRange(4, 8);
+        purpleArchwood.drops.add(purpleArchwoodLogDrop);
+
+        DropEntry purpleArchwoodSaplingDrop = new DropEntry();
+        purpleArchwoodSaplingDrop.item = "ars_nouveau:purple_archwood_sapling";
+        purpleArchwoodSaplingDrop.count = new CountRange(1, 1);
+        purpleArchwoodSaplingDrop.chance = 0.3f;
+        purpleArchwood.drops.add(purpleArchwoodSaplingDrop);
+
+        DropEntry purpleArchwoodPodDrop = new DropEntry();
+        purpleArchwoodPodDrop.item = "ars_nouveau:bastion_pod";
+        purpleArchwoodPodDrop.count = new CountRange(1, 1);
+        purpleArchwoodPodDrop.chance = 0.2f;
+        purpleArchwood.drops.add(purpleArchwoodPodDrop);
+
+        DropEntry purpleArchwoodStickDrop = new DropEntry();
+        purpleArchwoodStickDrop.item = "minecraft:stick";
+        purpleArchwoodStickDrop.count = new CountRange(1, 2);
+        purpleArchwoodStickDrop.chance = 0.5f;
+        purpleArchwood.drops.add(purpleArchwoodStickDrop);
+
+        trees.add(purpleArchwood);
+
+        // Green Archwood Tree
+        TreeEntry greenArchwood = new TreeEntry();
+        greenArchwood.sapling = "ars_nouveau:green_archwood_sapling";
+        greenArchwood.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        greenArchwood.drops = new ArrayList<>();
+
+        DropEntry greenArchwoodLogDrop = new DropEntry();
+        greenArchwoodLogDrop.item = "ars_nouveau:green_archwood_log";
+        greenArchwoodLogDrop.count = new CountRange(4, 8);
+        greenArchwood.drops.add(greenArchwoodLogDrop);
+
+        DropEntry greenArchwoodSaplingDrop = new DropEntry();
+        greenArchwoodSaplingDrop.item = "ars_nouveau:green_archwood_sapling";
+        greenArchwoodSaplingDrop.count = new CountRange(1, 1);
+        greenArchwoodSaplingDrop.chance = 0.3f;
+        greenArchwood.drops.add(greenArchwoodSaplingDrop);
+
+        DropEntry greenArchwoodPodDrop = new DropEntry();
+        greenArchwoodPodDrop.item = "ars_nouveau:mendosteen_pod";
+        greenArchwoodPodDrop.count = new CountRange(1, 1);
+        greenArchwoodPodDrop.chance = 0.2f;
+        greenArchwood.drops.add(greenArchwoodPodDrop);
+
+        DropEntry greenArchwoodStickDrop = new DropEntry();
+        greenArchwoodStickDrop.item = "minecraft:stick";
+        greenArchwoodStickDrop.count = new CountRange(1, 2);
+        greenArchwoodStickDrop.chance = 0.5f;
+        greenArchwood.drops.add(greenArchwoodStickDrop);
+
+        trees.add(greenArchwood);
     }
 
     private static void addTwilightForestTrees(List<TreeEntry> trees) {
-        // Example implementation for Twilight Forest trees
-        // This would need to be customized based on the actual mod's content
+        // Twilight Oak Tree
+        TreeEntry twilightOak = new TreeEntry();
+        twilightOak.sapling = "twilightforest:twilight_oak_sapling";
+        twilightOak.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        twilightOak.drops = new ArrayList<>();
 
-        // Canopy Tree Sapling
+        DropEntry twilightOakLogDrop = new DropEntry();
+        twilightOakLogDrop.item = "twilightforest:twilight_oak_log";
+        twilightOakLogDrop.count = new CountRange(2, 6);
+        twilightOak.drops.add(twilightOakLogDrop);
+
+        DropEntry twilightOakSaplingDrop = new DropEntry();
+        twilightOakSaplingDrop.item = "twilightforest:twilight_oak_sapling";
+        twilightOakSaplingDrop.count = new CountRange(1, 2);
+        twilightOak.drops.add(twilightOakSaplingDrop);
+
+        DropEntry twilightOakStickDrop = new DropEntry();
+        twilightOakStickDrop.item = "minecraft:stick";
+        twilightOakStickDrop.count = new CountRange(1, 2);
+        twilightOakStickDrop.chance = 0.5f;
+        twilightOak.drops.add(twilightOakStickDrop);
+
+        trees.add(twilightOak);
+
+        // Canopy Tree
         TreeEntry canopy = new TreeEntry();
         canopy.sapling = "twilightforest:canopy_sapling";
         canopy.validSoils = List.of(
                 "minecraft:dirt",
                 "minecraft:grass_block",
-                "minecraft:podzol"
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
         );
         canopy.drops = new ArrayList<>();
 
         DropEntry canopyLogDrop = new DropEntry();
         canopyLogDrop.item = "twilightforest:canopy_log";
-        canopyLogDrop.count = new CountRange(5, 9);
+        canopyLogDrop.count = new CountRange(4, 8);
         canopy.drops.add(canopyLogDrop);
 
         DropEntry canopySaplingDrop = new DropEntry();
         canopySaplingDrop.item = "twilightforest:canopy_sapling";
         canopySaplingDrop.count = new CountRange(1, 2);
-        canopySaplingDrop.chance = 0.4f;
         canopy.drops.add(canopySaplingDrop);
+
+        DropEntry canopyStickDrop = new DropEntry();
+        canopyStickDrop.item = "minecraft:stick";
+        canopyStickDrop.count = new CountRange(1, 2);
+        canopyStickDrop.chance = 0.5f;
+        canopy.drops.add(canopyStickDrop);
 
         trees.add(canopy);
 
-        // Add more Twilight Forest trees as needed
+        // Mangrove Tree
+        TreeEntry twilightMangrove = new TreeEntry();
+        twilightMangrove.sapling = "twilightforest:mangrove_sapling";
+        twilightMangrove.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        twilightMangrove.drops = new ArrayList<>();
+
+        DropEntry twilightMangroveLogDrop = new DropEntry();
+        twilightMangroveLogDrop.item = "twilightforest:mangrove_log";
+        twilightMangroveLogDrop.count = new CountRange(4, 8);
+        twilightMangrove.drops.add(twilightMangroveLogDrop);
+
+        DropEntry twilightMangroveSaplingDrop = new DropEntry();
+        twilightMangroveSaplingDrop.item = "twilightforest:mangrove_sapling";
+        twilightMangroveSaplingDrop.count = new CountRange(1, 2);
+        twilightMangrove.drops.add(twilightMangroveSaplingDrop);
+
+        DropEntry twilightMangroveStickDrop = new DropEntry();
+        twilightMangroveStickDrop.item = "minecraft:stick";
+        twilightMangroveStickDrop.count = new CountRange(1, 2);
+        twilightMangroveStickDrop.chance = 0.5f;
+        twilightMangrove.drops.add(twilightMangroveStickDrop);
+
+        trees.add(twilightMangrove);
+
+        // Darkwood Tree
+        TreeEntry darkWood = new TreeEntry();
+        darkWood.sapling = "twilightforest:darkwood_sapling";
+        darkWood.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        darkWood.drops = new ArrayList<>();
+
+        DropEntry darkWoodLogDrop = new DropEntry();
+        darkWoodLogDrop.item = "twilightforest:dark_log";
+        darkWoodLogDrop.count = new CountRange(4, 8);
+        darkWood.drops.add(darkWoodLogDrop);
+
+        DropEntry darkWoodSaplingDrop = new DropEntry();
+        darkWoodSaplingDrop.item = "twilightforest:darkwood_sapling";
+        darkWoodSaplingDrop.count = new CountRange(1, 2);
+        darkWood.drops.add(darkWoodSaplingDrop);
+
+        DropEntry darkWoodStickDrop = new DropEntry();
+        darkWoodStickDrop.item = "minecraft:stick";
+        darkWoodStickDrop.count = new CountRange(1, 2);
+        darkWoodStickDrop.chance = 0.5f;
+        darkWood.drops.add(darkWoodStickDrop);
+
+        trees.add(darkWood);
+
+        // Rainbow Oak Tree
+        TreeEntry rainbowOak = new TreeEntry();
+        rainbowOak.sapling = "twilightforest:rainbow_oak_sapling";
+        rainbowOak.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        rainbowOak.drops = new ArrayList<>();
+
+        DropEntry rainbowOakLogDrop = new DropEntry();
+        rainbowOakLogDrop.item = "twilightforest:twilight_oak_log";
+        rainbowOakLogDrop.count = new CountRange(2, 6);
+        rainbowOak.drops.add(rainbowOakLogDrop);
+
+        DropEntry rainbowOakSaplingDrop = new DropEntry();
+        rainbowOakSaplingDrop.item = "twilightforest:rainbow_oak_sapling";
+        rainbowOakSaplingDrop.count = new CountRange(1, 2);
+        rainbowOak.drops.add(rainbowOakSaplingDrop);
+
+        DropEntry rainbowOakStickDrop = new DropEntry();
+        rainbowOakStickDrop.item = "minecraft:stick";
+        rainbowOakStickDrop.count = new CountRange(1, 2);
+        rainbowOakStickDrop.chance = 0.5f;
+        rainbowOak.drops.add(rainbowOakStickDrop);
+
+        trees.add(rainbowOak);
+    }
+
+    private static void addEvilCraftTrees(List<TreeEntry> trees) {
+        // Undead Tree
+        TreeEntry undead = new TreeEntry();
+        undead.sapling = "evilcraft:undead_sapling";
+        undead.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        undead.drops = new ArrayList<>();
+
+        DropEntry undeadLogDrop = new DropEntry();
+        undeadLogDrop.item = "evilcraft:undead_log";
+        undeadLogDrop.count = new CountRange(2, 6);
+        undead.drops.add(undeadLogDrop);
+
+        DropEntry undeadDeadbushDrop = new DropEntry();
+        undeadDeadbushDrop.item = "minecraft:dead_bush";
+        undeadDeadbushDrop.count = new CountRange(1, 2);
+        undead.drops.add(undeadDeadbushDrop);
+
+        trees.add(undead);
+    }
+
+    private static void addForbiddenArcanusTrees(List<TreeEntry> trees) {
+        // Forbidden Arcanus
+        TreeEntry aurum = new TreeEntry();
+        aurum.sapling = "forbidden_arcanus:aurum_sapling";
+        aurum.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        aurum.drops = new ArrayList<>();
+
+        DropEntry aurumLogDrop = new DropEntry();
+        aurumLogDrop.item = "forbidden_arcanus:aurum_log";
+        aurumLogDrop.count = new CountRange(2, 6);
+        aurum.drops.add(aurumLogDrop);
+
+        DropEntry aurumSaplingDrop = new DropEntry();
+        aurumSaplingDrop.item = "forbidden_arcanus:aurum_sapling";
+        aurumSaplingDrop.count = new CountRange(1, 3);
+        aurum.drops.add(aurumSaplingDrop);
+
+        DropEntry aurumStickDrop = new DropEntry();
+        aurumStickDrop.item = "minecraft:stick";
+        aurumStickDrop.count = new CountRange(1, 2);
+        aurumStickDrop.chance = 0.5f;
+        aurum.drops.add(aurumStickDrop);
+
+        DropEntry aurumNuggetDrop = new DropEntry();
+        aurumNuggetDrop.item = "minecraft:gold_nugget";
+        aurumNuggetDrop.count = new CountRange(1, 2);
+        aurumNuggetDrop.chance = 0.1f;
+        aurum.drops.add(aurumNuggetDrop);
+
+        trees.add(aurum);
+
+        // Edelwood
+        TreeEntry edelwood = new TreeEntry();
+        edelwood.sapling = "forbidden_arcanus:growing_edelwood";
+        edelwood.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        edelwood.drops = new ArrayList<>();
+
+        DropEntry edelwoodLogDrop = new DropEntry();
+        edelwoodLogDrop.item = "forbidden_arcanus:edelwood_log";
+        edelwoodLogDrop.count = new CountRange(2, 6);
+        edelwood.drops.add(edelwoodLogDrop);
+
+        DropEntry edelwoodCarvedLogDrop = new DropEntry();
+        edelwoodCarvedLogDrop.item = "forbidden_arcanus:carved_edelwood_log";
+        edelwoodCarvedLogDrop.count = new CountRange(1, 1);
+        aurumNuggetDrop.chance = 0.4f;
+        edelwood.drops.add(edelwoodCarvedLogDrop);
+
+        trees.add(edelwood);
+    }
+
+    private static void addIntegratedDynamicsTrees(List<TreeEntry> trees) {
+        // Menril Trees
+        TreeEntry menril = new TreeEntry();
+        menril.sapling = "integrateddynamics:menril_sapling";
+        menril.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        menril.drops = new ArrayList<>();
+
+        DropEntry menrilLogDrop = new DropEntry();
+        menrilLogDrop.item = "integrateddynamics:menril_log";
+        menrilLogDrop.count = new CountRange(2, 6);
+        menril.drops.add(menrilLogDrop);
+
+        DropEntry menrilSaplingDrop = new DropEntry();
+        menrilSaplingDrop.item = "integrateddynamics:menril_sapling";
+        menrilSaplingDrop.count = new CountRange(1, 2);
+        menril.drops.add(menrilSaplingDrop);
+
+        DropEntry menrilChunkDrop = new DropEntry();
+        menrilChunkDrop.item = "integrateddynamics:crystalized_menril_chunk";
+        menrilChunkDrop.count = new CountRange(1, 2);
+        menrilChunkDrop.chance = 0.5f;
+        menril.drops.add(menrilChunkDrop);
+
+        DropEntry menrilBerriesDrop = new DropEntry();
+        menrilBerriesDrop.item = "integrateddynamics:menril_berries";
+        menrilBerriesDrop.count = new CountRange(2, 4);
+        menrilBerriesDrop.chance = 0.5f;
+        menril.drops.add(menrilBerriesDrop);
+
+        DropEntry menrilStickDrop = new DropEntry();
+        menrilStickDrop.item = "minecraft:stick";
+        menrilStickDrop.count = new CountRange(1, 2);
+        menrilStickDrop.chance = 0.5f;
+        menril.drops.add(menrilStickDrop);
+
+        trees.add(menril);
+    }
+
+    private static void addHexereiTrees(List<TreeEntry> trees) {
+        // Mahogany
+        TreeEntry mahogany = new TreeEntry();
+        mahogany.sapling = "hexerei:mahogany_sapling";
+        mahogany.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        mahogany.drops = new ArrayList<>();
+
+        DropEntry mahoganyLogDrop = new DropEntry();
+        mahoganyLogDrop.item = "hexerei:mahogany_log";
+        mahoganyLogDrop.count = new CountRange(4, 8);
+        mahogany.drops.add(mahoganyLogDrop);
+
+        DropEntry mahoganySaplingDrop = new DropEntry();
+        mahoganySaplingDrop.item = "hexerei:mahogany_sapling";
+        mahoganySaplingDrop.count = new CountRange(1, 1);
+        mahogany.drops.add(mahoganySaplingDrop);
+
+        DropEntry mahoganyStickDrop = new DropEntry();
+        mahoganyStickDrop.item = "minecraft:stick";
+        mahoganyStickDrop.count = new CountRange(1, 2);
+        mahoganyStickDrop.chance = 0.5f;
+        mahogany.drops.add(mahoganyStickDrop);
+
+        trees.add(mahogany);
+
+        // Willow
+        TreeEntry willow = new TreeEntry();
+        willow.sapling = "hexerei:willow_sapling";
+        willow.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        willow.drops = new ArrayList<>();
+
+        DropEntry willowLogDrop = new DropEntry();
+        willowLogDrop.item = "hexerei:willow_log";
+        willowLogDrop.count = new CountRange(4, 8);
+        willow.drops.add(willowLogDrop);
+
+        DropEntry willowSaplingDrop = new DropEntry();
+        willowSaplingDrop.item = "hexerei:willow_sapling";
+        willowSaplingDrop.count = new CountRange(1, 1);
+        willow.drops.add(willowSaplingDrop);
+
+        DropEntry willowStickDrop = new DropEntry();
+        willowStickDrop.item = "minecraft:stick";
+        willowStickDrop.count = new CountRange(1, 2);
+        willowStickDrop.chance = 0.5f;
+        willow.drops.add(willowStickDrop);
+
+        trees.add(willow);
+
+        // Witch Hazel
+        TreeEntry witchHazel = new TreeEntry();
+        witchHazel.sapling = "hexerei:witch_hazel_sapling";
+        witchHazel.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        witchHazel.drops = new ArrayList<>();
+
+        DropEntry witchHazelLogDrop = new DropEntry();
+        witchHazelLogDrop.item = "hexerei:witch_hazel_log";
+        witchHazelLogDrop.count = new CountRange(2, 6);
+        witchHazel.drops.add(witchHazelLogDrop);
+
+        DropEntry witchHazelSaplingDrop = new DropEntry();
+        witchHazelSaplingDrop.item = "hexerei:witch_hazel_sapling";
+        witchHazelSaplingDrop.count = new CountRange(1, 1);
+        witchHazel.drops.add(witchHazelSaplingDrop);
+
+        DropEntry witchHazelStickDrop = new DropEntry();
+        witchHazelStickDrop.item = "minecraft:stick";
+        witchHazelStickDrop.count = new CountRange(1, 2);
+        witchHazelStickDrop.chance = 0.5f;
+        witchHazel.drops.add(witchHazelStickDrop);
+
+        trees.add(witchHazel);
+    }
+
+    private static void addOccultismTrees(List<TreeEntry> trees) {
+        // Otherworld
+        TreeEntry otherworld = new TreeEntry();
+        otherworld.sapling = "occultism:otherworld_sapling";
+        otherworld.validSoils = List.of(
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:podzol",
+                "minecraft:coarse_dirt",
+                "minecraft:mycelium"
+        );
+        otherworld.drops = new ArrayList<>();
+
+        DropEntry otherworldLogDrop = new DropEntry();
+        otherworldLogDrop.item = "occultism:otherworld_log";
+        otherworldLogDrop.count = new CountRange(2, 6);
+        otherworld.drops.add(otherworldLogDrop);
+
+        DropEntry otherworldSaplingDrop = new DropEntry();
+        otherworldSaplingDrop.item = "occultism:otherworld_sapling";
+        otherworldSaplingDrop.count = new CountRange(1, 3);
+        otherworld.drops.add(otherworldSaplingDrop);
+
+        trees.add(otherworld);
     }
 
     private static void addVanillaSoils(List<SoilEntry> soils) {
@@ -513,7 +1067,7 @@ public class AgritechTreesConfig {
 
         SoilEntry podzol = new SoilEntry();
         podzol.soil = "minecraft:podzol";
-        podzol.growthModifier = 0.6f; // Better for trees
+        podzol.growthModifier = 0.6f;
         soils.add(podzol);
 
         SoilEntry mud = new SoilEntry();
@@ -523,7 +1077,7 @@ public class AgritechTreesConfig {
 
         SoilEntry muddyMangroveRoots = new SoilEntry();
         muddyMangroveRoots.soil = "minecraft:muddy_mangrove_roots";
-        muddyMangroveRoots.growthModifier = 0.65f; // Better for mangroves
+        muddyMangroveRoots.growthModifier = 0.65f;
         soils.add(muddyMangroveRoots);
 
         SoilEntry rootedDirt = new SoilEntry();
@@ -538,18 +1092,13 @@ public class AgritechTreesConfig {
 
         SoilEntry grass = new SoilEntry();
         grass.soil = "minecraft:grass_block";
-        grass.growthModifier = 0.55f; // Better for trees than for crops
+        grass.growthModifier = 0.55f;
         soils.add(grass);
 
-        SoilEntry sand = new SoilEntry();
-        sand.soil = "minecraft:sand";
-        sand.growthModifier = 0.35f; // Worse for most trees
-        soils.add(sand);
-
-        SoilEntry redSand = new SoilEntry();
-        redSand.soil = "minecraft:red_sand";
-        redSand.growthModifier = 0.4f; // Better for acacia
-        soils.add(redSand);
+        SoilEntry mycelium = new SoilEntry();
+        mycelium.soil = "minecraft:mycelium";
+        mycelium.growthModifier = 0.55f;
+        soils.add(mycelium);
     }
 
     private static void processConfig(TreeConfigData configData) {

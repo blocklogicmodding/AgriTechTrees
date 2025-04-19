@@ -20,19 +20,49 @@ public class Config
             .define("infoIs", true);
 
     // Mod compatibility section
-    private static final ModConfigSpec.BooleanValue ENABLE_BIOMES_O_PLENTY = BUILDER
-            .comment("Enable Biomes 'O Plenty. Default: true")
-            .define("enableTwilightForest", true);
+    private static final ModConfigSpec.BooleanValue ENABLE_ARS_ELEMENTAL = BUILDER
+            .comment("Enable Ars Elemental Archwood Trees. Default: true")
+            .define("addArsElementalTrees", true);
+
+    private static final ModConfigSpec.BooleanValue ENABLE_ARS_NOUVEAU = BUILDER
+            .comment("Enable Ars Nouveau Archwood Trees. Default: true")
+            .define("addArsNouveauTrees", true);
 
     private static final ModConfigSpec.BooleanValue ENABLE_TWILIGHT_FOREST = BUILDER
-            .comment("Enable Twilight Forest. Default: true")
-            .define("enableBiomesOPlenty", true);
+            .comment("Enable Twilight Forest Trees (Not including magic trees). Default: true")
+            .define("enableTwilightForest", true);
+
+    private static final ModConfigSpec.BooleanValue ENABLE_EVILCRAFT = BUILDER
+            .comment("Enable Evilcraft Trees (Not including magic trees). Default: true")
+            .define("enableEvilCraft", true);
+
+    private static final ModConfigSpec.BooleanValue ENABLE_FORBIDDEN_ARCANUS = BUILDER
+            .comment("Enable Forbidden Arcanus Trees. Default: true")
+            .define("enableForbiddenArcanus", true);
+
+    private static final ModConfigSpec.BooleanValue ENABLE_INTEGRATED_DYNAMICS = BUILDER
+            .comment("Enable Integrated Dynamics Trees. Default: true")
+            .define("enableIntegratedDynamics", true);
+
+    private static final ModConfigSpec.BooleanValue ENABLE_OCCULTISM = BUILDER
+            .comment("Enable Occultism Trees. Default: true")
+            .define("enableOccultism", true);
+
+    private static final ModConfigSpec.BooleanValue ENABLE_HEXEREI = BUILDER
+            .comment("Enable Hexerei Trees. Default: true")
+            .define("enableHexerei", true);
 
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
-    public static boolean enableBiomesOPlenty;
+    public static boolean enableArsElemental;
+    public static boolean enableArsNouveau;
     public static boolean enableTwilightForest;
+    public static boolean enableEvilCraft;
+    public static boolean enableForbiddenArcanus;
+    public static boolean enableIntegratedDynamics;
+    public static boolean enableOccultism;
+    public static boolean enableHexerei;
 
     private static boolean validateItemName(final Object obj)
     {
@@ -42,8 +72,14 @@ public class Config
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
     {
-        enableBiomesOPlenty = ENABLE_BIOMES_O_PLENTY.get() && ModList.get().isLoaded("biomesoplenty");
+        enableArsElemental = ENABLE_ARS_ELEMENTAL.get() && ModList.get().isLoaded("ars_elemental");
+        enableArsNouveau = ENABLE_ARS_NOUVEAU.get() && ModList.get().isLoaded("ars_nouveau");
         enableTwilightForest = ENABLE_TWILIGHT_FOREST.get() && ModList.get().isLoaded("twilightforest");
+        enableEvilCraft = ENABLE_EVILCRAFT.get() && ModList.get().isLoaded("evilcraft");
+        enableForbiddenArcanus = ENABLE_FORBIDDEN_ARCANUS.get() && ModList.get().isLoaded("forbidden_arcanus");
+        enableIntegratedDynamics = ENABLE_INTEGRATED_DYNAMICS.get() && ModList.get().isLoaded("integrateddynamics");
+        enableOccultism = ENABLE_OCCULTISM.get() && ModList.get().isLoaded("occultism");
+        enableHexerei = ENABLE_HEXEREI.get() && ModList.get().isLoaded("hexerei");
 
         AgritechTreesConfig.loadConfig();
     }
