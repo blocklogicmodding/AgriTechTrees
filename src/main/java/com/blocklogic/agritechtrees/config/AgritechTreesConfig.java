@@ -1245,8 +1245,6 @@ public class AgritechTreesConfig {
     }
 
     public static int getBaseSaplingGrowthTime(String saplingId) {
-        // Different tree types could have different base growth times
-        // Default to 2000 ticks (100 seconds) if not specified
         return 2000;
     }
 
@@ -1257,7 +1255,7 @@ public class AgritechTreesConfig {
 
     public static class TreeEntry {
         public String sapling;
-        public String soil;  // For backward compatibility
+        public String soil;
         public List<String> validSoils;
         public List<DropEntry> drops;
     }

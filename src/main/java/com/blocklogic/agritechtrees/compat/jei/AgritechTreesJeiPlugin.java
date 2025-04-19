@@ -46,7 +46,7 @@ public class AgritechTreesJeiPlugin implements IModPlugin {
                 registration.addIngredientInfo(
                         sapling,
                         VanillaTypes.ITEM_STACK,
-                        Component.literal("Tree Planters")
+                        Component.translatable("jei.agritechtrees.planters")
                 );
             }
         }

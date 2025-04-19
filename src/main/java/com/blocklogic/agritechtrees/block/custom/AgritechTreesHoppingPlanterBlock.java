@@ -74,7 +74,7 @@ public class AgritechTreesHoppingPlanterBlock extends BaseEntityBlock {
                 MenuProvider menuProvider = new SimpleMenuProvider(
                         (containerId, playerInventory, playerEntity) ->
                                 new AgritechTreesPlanterMenu(containerId, playerInventory, agritechTreesPlanterBlockEntity),
-                        Component.literal("Trees Hopping Planter")
+                        Component.translatable("container.agritechtrees.hopping_planter")
                 );
 
                 player.openMenu(menuProvider, pos);

@@ -4,7 +4,6 @@ import com.blocklogic.agritechtrees.block.ModBlocks;
 import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
 import com.blocklogic.agritechtrees.screen.custom.AgritechTreesPlanterMenu;
 import com.blocklogic.agritechtrees.util.RegistryHelper;
-import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -52,7 +51,7 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
         }
     };
 
-    private int growthProgress = 0; // Keep as int for easy serialization
+    private int growthProgress = 0;
     private int growthTicks = 0;
     private boolean readyToHarvest = false;
 
@@ -93,7 +92,6 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
             return;
         }
 
-        // Make sure this soil is valid for this sapling
         String saplingId = RegistryHelper.getItemId(saplingStack);
         String soilId = RegistryHelper.getItemId(soilStack);
 
@@ -106,21 +104,17 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
         if (!blockEntity.readyToHarvest) {
             blockEntity.growthTicks++;
 
-            // Use tree-specific growth time from config
             int baseGrowthTime = AgritechTreesConfig.getBaseSaplingGrowthTime(saplingId);
 
             if (blockEntity.growthTicks >= baseGrowthTime / growthModifier) {
-                // Trees just mature directly to harvest stage
                 blockEntity.readyToHarvest = true;
-                blockEntity.growthProgress = 100; // 100% grown
+                blockEntity.growthProgress = 100;
 
                 level.sendBlockUpdated(pos, state, state, 3);
                 blockEntity.setChanged();
             } else {
-                // Update growth progress percentage for rendering
                 blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)baseGrowthTime) * 100);
 
-                // Only update client occasionally to avoid network spam
                 if (blockEntity.growthTicks % 20 == 0) {
                     level.sendBlockUpdated(pos, state, state, 3);
                     blockEntity.setChanged();
@@ -359,8 +353,6 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
     }
 
     public int getGrowthStage() {
-        // Translate progress to a 0-1 value for simpler rendering
-        // 0 = sapling, 1 = grown
         return growthProgress > 50 ? 1 : 0;
     }
 

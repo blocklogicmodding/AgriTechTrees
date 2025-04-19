@@ -27,8 +27,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import static net.minecraft.world.level.block.state.BlockBehaviour.simpleCodec;
-
 public class AgritechTreesPlanterBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(0, 0.0, 0, 15.9, 15.9, 15.9);
     public static final MapCodec<AgritechTreesPlanterBlock> CODEC = simpleCodec(AgritechTreesPlanterBlock::new);
@@ -75,7 +73,7 @@ public class AgritechTreesPlanterBlock extends BaseEntityBlock {
             if (!level.isClientSide()) {
                 MenuProvider menuProvider = new SimpleMenuProvider(
                         (containerId, playerInventory, playerEntity) -> new AgritechTreesPlanterMenu(containerId, playerInventory, agritechHoppingPlanterBlockEntity),
-                        Component.literal("Trees Planter")
+                        Component.translatable("container.agritechtrees.planter")
                 );
 
                 player.openMenu(menuProvider, pos);

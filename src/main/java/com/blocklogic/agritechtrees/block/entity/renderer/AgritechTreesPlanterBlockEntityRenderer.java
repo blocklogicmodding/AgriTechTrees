@@ -20,7 +20,6 @@ public class AgritechTreesPlanterBlockEntityRenderer implements BlockEntityRende
 
     @Override
     public void render(AgritechTreesPlanterBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        // Render soil similarly to crop renderer
         if (blockEntity.inventory.getSlots() > 1 && !blockEntity.inventory.getStackInSlot(1).isEmpty()) {
             ItemStack soilStack = blockEntity.inventory.getStackInSlot(1);
 
@@ -38,7 +37,6 @@ public class AgritechTreesPlanterBlockEntityRenderer implements BlockEntityRende
             }
         }
 
-        // Render sapling with simple scaling based on growth progress
         if (blockEntity.inventory.getSlots() > 0 && !blockEntity.inventory.getStackInSlot(0).isEmpty() &&
                 blockEntity.inventory.getSlots() > 1 && !blockEntity.inventory.getStackInSlot(1).isEmpty()) {
 
@@ -50,17 +48,13 @@ public class AgritechTreesPlanterBlockEntityRenderer implements BlockEntityRende
 
                 poseStack.pushPose();
 
-                // Center the sapling in the planter
                 poseStack.translate(0.5, 0.8, 0.5);
 
-                // Get growth progress (0.0 to 1.0)
                 float growthProgress = blockEntity.getGrowthProgress();
 
-                // Scale sapling based on growth progress
                 float scale = 0.5f + (growthProgress * 0.3f);
                 poseStack.scale(scale, scale, scale);
 
-                // Shift back to ensure centered positioning
                 poseStack.translate(-0.5, 0, -0.5);
 
                 BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();

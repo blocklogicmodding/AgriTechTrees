@@ -24,7 +24,6 @@ public class PlanterRecipe implements IRecipeCategoryExtension {
         return saplingIngredient;
     }
 
-    // Keep this for backward compatibility if needed
     public Ingredient getSeedIngredient() {
         return saplingIngredient;
     }

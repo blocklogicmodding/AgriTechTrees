@@ -1,25 +1,40 @@
+![AgriTech Banner](agritech_trees_banner.png)
 
-Installation information
-=======
+AgriTech Trees introduces customizable planters that streamline tree growing and automated harvesting.
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+## Features
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+- **Automated Tree Growth**: Plant saplings and watch them grow automatically
+- **Hopping Planters**: Automatically output harvested items to containers below
+- **Internal Storage**: Built-in inventory to store harvested trees
+- **Wide Sapling Compatibility**: Works with vanilla saplings and many modded saplings
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## Supported Saplings
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+AgriTech Trees supports all vanilla saplings:
+- Oak, Birch, Spruce, Jungle, Dark Oak, Cherry, Azalea, Acacia, Mangrove, 
+- Crimson Stem, Warped Stem
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+## Mod Compatibility
+
+AgriTech integrates with:
+- **Integrated Dynamics**
+- **Ars Nouveau**
+- **Occultism**
+- **Twilight Forest (Not including magic trees)**
+- **Forbidden Arcanus**
+- **EvilCraft**
+- **Hexerei**
+
+## Configuration
+
+- Enable/disable mod compatibility
+- Add custom saplings and soils
+- Modify growth rates and drop chances
+- Customize planter behavior
+
+Configuration is located at `config/agritechtrees/saplings_and_soil.json`
+
+## License
+
+All Rights Reserved

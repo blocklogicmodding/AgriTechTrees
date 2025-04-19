@@ -5,8 +5,8 @@ import com.blocklogic.agritechtrees.block.entity.AgritechTreesPlanterBlockEntity
 import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
 import com.blocklogic.agritechtrees.screen.ModMenuTypes;
 import com.blocklogic.agritechtrees.util.RegistryHelper;
+import com.mojang.logging.LogUtils;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -19,9 +19,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 public class AgritechTreesPlanterMenu extends AbstractContainerMenu {
 
+    private static final Logger LOGGER = LogUtils.getLogger();
     public final AgritechTreesPlanterBlockEntity blockEntity;
 
     private final Level level;
@@ -163,7 +165,7 @@ public class AgritechTreesPlanterMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            System.out.println("Invalid slotIndex:" + index);
+            LOGGER.error("Invalid slotIndex:" + index);
             return ItemStack.EMPTY;
         }
 
