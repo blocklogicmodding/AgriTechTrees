@@ -1,6 +1,8 @@
 package com.blocklogic.agritechtrees.block;
 
 import com.blocklogic.agritechtrees.AgritechTrees;
+import com.blocklogic.agritechtrees.block.custom.AgritechTreesHoppingPlanterBlock;
+import com.blocklogic.agritechtrees.block.custom.AgritechTreesPlanterBlock;
 import com.blocklogic.agritechtrees.item.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
@@ -21,25 +23,25 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(AgritechTrees.MODID);
 
     public static final DeferredBlock<Block> AGRITECH_TREES_PLANTER_BLOCK = registerBlock("agritech_trees_planter_block",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(1f)
+            () -> new AgritechTreesPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
                     .noOcclusion()) {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.agritech_trees.agritech_planter_block"));
+                    tooltipComponents.add(Component.translatable("tooltip.agritech_trees.agritech_trees_planter_block"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
 
     public static final DeferredBlock<Block> AGRITECH_TREES_HOPPING_PLANTER_BLOCK = registerBlock("agritech_trees_hopping_planter_block",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(1f)
+            () -> new AgritechTreesHoppingPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
                     .noOcclusion()) {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.agritech_trees.agritech_hopping_planter_block"));
+                    tooltipComponents.add(Component.translatable("tooltip.agritech_trees.agritech_trees_hopping_planter_block"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });

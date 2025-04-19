@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "agritech:agritech_hopping_planter_block"
+          "name": "agritechtrees:agritech_trees_hopping_planter_block"
         }
       ],
       "rolls": 1.0

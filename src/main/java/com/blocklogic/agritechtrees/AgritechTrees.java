@@ -3,29 +3,18 @@ package com.blocklogic.agritechtrees;
 import com.blocklogic.agritechtrees.block.ModBlocks;
 import com.blocklogic.agritechtrees.block.entity.ModBlockEntities;
 import com.blocklogic.agritechtrees.block.entity.renderer.AgritechTreesPlanterBlockEntityRenderer;
+import com.blocklogic.agritechtrees.command.AgritechTreesCommands;
 import com.blocklogic.agritechtrees.screen.custom.AgritechTreesPlanterScreen;
 import com.blocklogic.agritechtrees.item.ModCreativeModeTabs;
 import com.blocklogic.agritechtrees.item.ModItems;
 import com.blocklogic.agritechtrees.screen.ModMenuTypes;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -38,10 +27,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 @Mod(AgritechTrees.MODID)
 public class AgritechTrees
@@ -61,6 +46,8 @@ public class AgritechTrees
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
 
+        NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
+
         modEventBus.addListener(this::addCreative);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -74,6 +61,10 @@ public class AgritechTrees
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
 
+    }
+
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        AgritechTreesCommands.register(event.getDispatcher());
     }
 
     @SubscribeEvent

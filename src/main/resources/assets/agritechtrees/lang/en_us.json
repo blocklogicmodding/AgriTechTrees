@@ -2,10 +2,10 @@
   "block.agritechtrees.agritech_trees_planter_block": "Agritech Trees Planter",
   "block.agritechtrees.agritech_trees_hopping_planter_block": "Agritech Trees Hopping Planter",
 
-  "creativetab.agritechtrees.agritech": "AgriTech Trees",
+  "creativetab.agritech_trees.agritech_trees": "AgriTech Trees",
 
-  "tooltip.agritechtrees.agritech_trees_planter_block": "A Planter to grow saplings in!",
-  "tooltip.agritechtrees.agritech_trees_hopping_planter_block": "A Planter with a hopper to grow crops in!",
+  "tooltip.agritech_trees.agritech_trees_planter_block": "A Planter to grow saplings in!",
+  "tooltip.agritech_trees.agritech_trees_hopping_planter_block": "A Planter with a hopper to grow crops in!",
 
   "jei.agritech_trees.planter.tooltip": "Agritech Tree Planters"
 

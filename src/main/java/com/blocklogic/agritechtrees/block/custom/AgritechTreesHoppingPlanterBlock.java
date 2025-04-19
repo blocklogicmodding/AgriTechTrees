@@ -28,7 +28,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class AgritechTreesHoppingPlanterBlock extends BaseEntityBlock {
-    public static final VoxelShape SHAPE = Block.box(0, 0.0, 0, 16.0, 16.0, 16.0);
+    public static final VoxelShape SHAPE = Block.box(0, 0.0, 0, 15.9, 15.9, 15.9);
     public static final MapCodec<AgritechTreesHoppingPlanterBlock> CODEC = simpleCodec(AgritechTreesHoppingPlanterBlock::new);
 
     public AgritechTreesHoppingPlanterBlock(BlockBehaviour.Properties properties) {
@@ -74,7 +74,7 @@ public class AgritechTreesHoppingPlanterBlock extends BaseEntityBlock {
                 MenuProvider menuProvider = new SimpleMenuProvider(
                         (containerId, playerInventory, playerEntity) ->
                                 new AgritechTreesPlanterMenu(containerId, playerInventory, agritechTreesPlanterBlockEntity),
-                        Component.literal("Agritech Hopping Planter")
+                        Component.literal("Trees Hopping Planter")
                 );
 
                 player.openMenu(menuProvider, pos);

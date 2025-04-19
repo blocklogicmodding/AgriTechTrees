@@ -30,10 +30,6 @@ public class AgritechTreesPlanterMenu extends AbstractContainerMenu {
         this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
     }
 
-    public AgritechTreesPlanterMenu(int containerId, Inventory inv, AgritechTreesPlanterBlockEntity extraData) {
-        this(containerId, inv, inv.player.level().getBlockEntity(extraData.getBlockPos()));
-    }
-
     public static class SaplingSlot extends SlotItemHandler {
         private final AgritechTreesPlanterBlockEntity blockEntity;
 

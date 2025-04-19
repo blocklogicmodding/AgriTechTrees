@@ -22,7 +22,7 @@ public class AgritechTreesConfig {
 
     public static void loadConfig() {
         LOGGER.info("AgritechTreesConfig.loadConfig() invoked.");
-        Path configPath = FMLPaths.CONFIGDIR.get().resolve("agritech/saplings_and_soil.json");
+        Path configPath = FMLPaths.CONFIGDIR.get().resolve("agritechtrees/saplings_and_soil.json");
         if (!Files.exists(configPath)) {
             createDefaultConfig(configPath);
         }

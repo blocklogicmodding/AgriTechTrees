@@ -30,7 +30,7 @@ import org.jetbrains.annotations.Nullable;
 import static net.minecraft.world.level.block.state.BlockBehaviour.simpleCodec;
 
 public class AgritechTreesPlanterBlock extends BaseEntityBlock {
-    public static final VoxelShape SHAPE = Block.box(0, 0.0, 0, 16.0, 16.0, 16.0);
+    public static final VoxelShape SHAPE = Block.box(0, 0.0, 0, 15.9, 15.9, 15.9);
     public static final MapCodec<AgritechTreesPlanterBlock> CODEC = simpleCodec(AgritechTreesPlanterBlock::new);
 
     public AgritechTreesPlanterBlock(BlockBehaviour.Properties properties) {
@@ -75,7 +75,7 @@ public class AgritechTreesPlanterBlock extends BaseEntityBlock {
             if (!level.isClientSide()) {
                 MenuProvider menuProvider = new SimpleMenuProvider(
                         (containerId, playerInventory, playerEntity) -> new AgritechTreesPlanterMenu(containerId, playerInventory, agritechHoppingPlanterBlockEntity),
-                        Component.literal("Agritech Planter")
+                        Component.literal("Trees Planter")
                 );
 
                 player.openMenu(menuProvider, pos);

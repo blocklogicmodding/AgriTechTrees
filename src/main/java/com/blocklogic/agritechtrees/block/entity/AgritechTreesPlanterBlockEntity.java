@@ -245,9 +245,57 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
         ItemStack saplingStack = inventory.getStackInSlot(0);
         List<ItemStack> drops = getTreeDrops(saplingStack);
 
-        // Rest of placement logic remains the same
         for (ItemStack dropStack : drops) {
-            // ... existing placement code ...
+            int remainingItemsToPlace = dropStack.getCount();
+
+            while (remainingItemsToPlace > 0) {
+                boolean itemPlaced = false;
+
+                for (int slot = 2; slot < 8; slot++) {
+                    ItemStack existingStack = inventory.getStackInSlot(slot);
+
+                    if (!existingStack.isEmpty() &&
+                            existingStack.is(dropStack.getItem()) &&
+                            existingStack.getCount() < existingStack.getMaxStackSize()) {
+
+                        int spaceAvailable = existingStack.getMaxStackSize() - existingStack.getCount();
+                        int itemsToAdd = Math.min(spaceAvailable, remainingItemsToPlace);
+
+                        existingStack.grow(itemsToAdd);
+                        inventory.setStackInSlot(slot, existingStack);
+
+                        remainingItemsToPlace -= itemsToAdd;
+                        itemPlaced = true;
+
+                        if (remainingItemsToPlace <= 0) {
+                            break;
+                        }
+                    }
+                }
+
+                if (remainingItemsToPlace > 0) {
+                    for (int slot = 2; slot < 8; slot++) {
+                        ItemStack existingStack = inventory.getStackInSlot(slot);
+
+                        if (existingStack.isEmpty()) {
+                            ItemStack newStack = new ItemStack(dropStack.getItem(), remainingItemsToPlace);
+                            inventory.setStackInSlot(slot, newStack);
+
+                            remainingItemsToPlace = 0;
+                            itemPlaced = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!itemPlaced) {
+                    break;
+                }
+            }
+
+            if (remainingItemsToPlace > 0) {
+                break;
+            }
         }
 
         resetGrowth();
