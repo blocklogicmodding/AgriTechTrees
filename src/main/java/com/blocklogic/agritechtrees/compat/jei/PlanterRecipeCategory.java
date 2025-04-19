@@ -55,7 +55,7 @@ public class PlanterRecipeCategory implements IRecipeCategory<PlanterRecipe> {
 
     @Override
     public Component getTitle() {
-        return Component.translatable("jei.agritechtrees.planter.tooltip");
+        return Component.translatable("jei.agritechtrees.planters.tooltip");
     }
 
     @Override
