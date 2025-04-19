@@ -399,7 +399,7 @@ public class AgritechTreesConfig {
 
         DropEntry azaleaOakLogDrop = new DropEntry();
         azaleaOakLogDrop.item = "minecraft:oak_log";
-        azaleaOakLogDrop.count = new CountRange(3, 5);
+        azaleaOakLogDrop.count = new CountRange(2, 6);
         azalea.drops.add(azaleaOakLogDrop);
 
         DropEntry azaleaDrop = new DropEntry();
@@ -438,7 +438,7 @@ public class AgritechTreesConfig {
 
         DropEntry floweringAzaleaOakLogDrop = new DropEntry();
         floweringAzaleaOakLogDrop.item = "minecraft:oak_log";
-        floweringAzaleaOakLogDrop.count = new CountRange(3, 5);
+        floweringAzaleaOakLogDrop.count = new CountRange(2, 6);
         floweringAzalea.drops.add(floweringAzaleaOakLogDrop);
 
         DropEntry floweringAzaleaDrop = new DropEntry();
@@ -460,6 +460,68 @@ public class AgritechTreesConfig {
         floweringAzalea.drops.add(floweringAzaleaMossBlockDrop);
 
         trees.add(floweringAzalea);
+
+        // Crimson Stem
+        TreeEntry crimson = new TreeEntry();
+        crimson.sapling = "minecraft:crimson_fungus";
+        crimson.validSoils = List.of(
+                "minecraft:crimson_nylium",
+                "minecraft:warped_nylium"
+        );
+        crimson.drops = new ArrayList<>();
+
+        DropEntry crimsonLogDrop = new DropEntry();
+        crimsonLogDrop.item = "minecraft:crimson_stem";
+        crimsonLogDrop.count = new CountRange(2, 6);
+        crimson.drops.add(crimsonLogDrop);
+
+        DropEntry crimsonWartDrop = new DropEntry();
+        crimsonWartDrop.item = "minecraft:nether_wart_block";
+        crimsonWartDrop.count = new CountRange(4, 8);
+        crimson.drops.add(crimsonWartDrop);
+
+        DropEntry crimsonVinesDrop = new DropEntry();
+        crimsonVinesDrop.item = "minecraft:weeping_vines";
+        crimsonVinesDrop.count = new CountRange(1, 2);
+        crimson.drops.add(crimsonVinesDrop);
+
+        DropEntry crimsonShroomDrop = new DropEntry();
+        crimsonShroomDrop.item = "minecraft:shroomlight";
+        crimsonShroomDrop.count = new CountRange(2, 4);
+        crimson.drops.add(crimsonShroomDrop);
+
+        trees.add(crimson);
+
+        // Warped Stem
+        TreeEntry warped = new TreeEntry();
+        warped.sapling = "minecraft:warped_fungus";
+        warped.validSoils = List.of(
+                "minecraft:crimson_nylium",
+                "minecraft:warped_nylium"
+        );
+        warped.drops = new ArrayList<>();
+
+        DropEntry warpedLogDrop = new DropEntry();
+        crimsonLogDrop.item = "minecraft:warped_stem";
+        crimsonLogDrop.count = new CountRange(2, 6);
+        warped.drops.add(warpedLogDrop);
+
+        DropEntry warpedWartDrop = new DropEntry();
+        crimsonWartDrop.item = "minecraft:warped_wart_block";
+        crimsonWartDrop.count = new CountRange(4, 8);
+        warped.drops.add(warpedWartDrop);
+
+        DropEntry warpedVinesDrop = new DropEntry();
+        crimsonVinesDrop.item = "minecraft:twisting_vines";
+        crimsonVinesDrop.count = new CountRange(1, 2);
+        warped.drops.add(warpedVinesDrop);
+
+        DropEntry warpedShroomDrop = new DropEntry();
+        crimsonShroomDrop.item = "minecraft:shroomlight";
+        crimsonShroomDrop.count = new CountRange(2, 4);
+        warped.drops.add(warpedShroomDrop);
+
+        trees.add(warped);
     }
 
     private static void addArsElementalTrees(List<TreeEntry> trees) {
@@ -1099,6 +1161,16 @@ public class AgritechTreesConfig {
         mycelium.soil = "minecraft:mycelium";
         mycelium.growthModifier = 0.55f;
         soils.add(mycelium);
+
+        SoilEntry crimsonNylium = new SoilEntry();
+        crimsonNylium.soil = "minecraft:crimson_nylium";
+        crimsonNylium.growthModifier = 0.6f;
+        soils.add(crimsonNylium);
+
+        SoilEntry warpedNylium = new SoilEntry();
+        warpedNylium.soil = "minecraft:warped_nylium";
+        warpedNylium.growthModifier = 0.6f;
+        soils.add(warpedNylium);
     }
 
     private static void processConfig(TreeConfigData configData) {
