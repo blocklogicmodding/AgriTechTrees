@@ -502,23 +502,23 @@ public class AgritechTreesConfig {
         warped.drops = new ArrayList<>();
 
         DropEntry warpedLogDrop = new DropEntry();
-        crimsonLogDrop.item = "minecraft:warped_stem";
-        crimsonLogDrop.count = new CountRange(2, 6);
+        warpedLogDrop.item = "minecraft:warped_stem";
+        warpedLogDrop.count = new CountRange(2, 6);
         warped.drops.add(warpedLogDrop);
 
         DropEntry warpedWartDrop = new DropEntry();
-        crimsonWartDrop.item = "minecraft:warped_wart_block";
-        crimsonWartDrop.count = new CountRange(4, 8);
+        warpedWartDrop.item = "minecraft:warped_wart_block";
+        warpedWartDrop.count = new CountRange(4, 8);
         warped.drops.add(warpedWartDrop);
 
         DropEntry warpedVinesDrop = new DropEntry();
-        crimsonVinesDrop.item = "minecraft:twisting_vines";
-        crimsonVinesDrop.count = new CountRange(1, 2);
+        warpedVinesDrop.item = "minecraft:twisting_vines";
+        warpedVinesDrop.count = new CountRange(1, 2);
         warped.drops.add(warpedVinesDrop);
 
         DropEntry warpedShroomDrop = new DropEntry();
-        crimsonShroomDrop.item = "minecraft:shroomlight";
-        crimsonShroomDrop.count = new CountRange(2, 4);
+        warpedShroomDrop.item = "minecraft:shroomlight";
+        warpedShroomDrop.count = new CountRange(2, 4);
         warped.drops.add(warpedShroomDrop);
 
         trees.add(warped);
