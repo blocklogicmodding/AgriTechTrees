@@ -4,6 +4,7 @@ import com.blocklogic.agritechtrees.block.ModBlocks;
 import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
 import com.blocklogic.agritechtrees.util.RegistryHelper;
 import com.blocklogic.agritechtrees.AgritechTrees;
+import com.mojang.logging.LogUtils;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -73,18 +74,25 @@ public class AgritechTreesJeiPlugin implements IModPlugin {
             String saplingId = entry.getKey();
 
             for (String soilId : entry.getValue()) {
-                Block soilBlock = RegistryHelper.getBlock(soilId);
-                if (soilBlock == null) {
-                    continue;
-                }
+                try {
+                    Block soilBlock = RegistryHelper.getBlock(soilId);
+                    if (soilBlock == null) {
+                        LogUtils.getLogger().error("Invalid soil block in config: {} for sapling {}", soilId, saplingId);
+                        continue;
+                    }
 
-                PlanterRecipe recipe = PlanterRecipe.create(saplingId, soilId);
-                if (!recipe.getOutputs().isEmpty()) {
-                    recipes.add(recipe);
+                    PlanterRecipe recipe = PlanterRecipe.create(saplingId, soilId);
+                    if (recipe != null && !recipe.getOutputs().isEmpty()) {
+                        recipes.add(recipe);
+                    }
+                } catch (Exception e) {
+                    LogUtils.getLogger().error("Error creating recipe for sapling {} and soil {}: {}",
+                            saplingId, soilId, e.getMessage(), e);
                 }
             }
         }
 
+        LogUtils.getLogger().info("Generated {} tree planter recipes for JEI", recipes.size());
         return recipes;
     }
 }

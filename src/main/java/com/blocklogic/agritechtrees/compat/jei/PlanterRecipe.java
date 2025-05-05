@@ -36,23 +36,38 @@ public class PlanterRecipe implements IRecipeCategoryExtension {
         return outputs;
     }
 
-    /**
-     * Factory method to create a recipe from sapling and soil IDs
-     */
     public static PlanterRecipe create(String saplingId, String soilId) {
-        Ingredient saplingIngredient = Ingredient.of(RegistryHelper.getItem(saplingId));
-        Ingredient soilIngredient = Ingredient.of(RegistryHelper.getBlock(soilId).asItem());
+        net.minecraft.world.item.Item saplingItem = RegistryHelper.getItem(saplingId);
+        if (saplingItem == null) {
+            com.mojang.logging.LogUtils.getLogger().error("Failed to create tree planter recipe: Sapling item not found for ID: {}", saplingId);
+            throw new IllegalArgumentException("Sapling item not found for ID: " + saplingId);
+        }
+
+        net.minecraft.world.level.block.Block soilBlock = RegistryHelper.getBlock(soilId);
+        if (soilBlock == null) {
+            com.mojang.logging.LogUtils.getLogger().error("Failed to create tree planter recipe: Soil block not found for ID: {}", soilId);
+            throw new IllegalArgumentException("Soil block not found for ID: " + soilId);
+        }
+
+        Ingredient saplingIngredient = Ingredient.of(saplingItem);
+        Ingredient soilIngredient = Ingredient.of(soilBlock.asItem());
 
         List<ItemStack> outputs = new ArrayList<>();
         List<AgritechTreesConfig.DropInfo> drops = AgritechTreesConfig.getTreeDrops(saplingId);
 
         for (AgritechTreesConfig.DropInfo dropInfo : drops) {
             if (dropInfo.chance > 0) {
-                ItemStack outputStack = new ItemStack(
-                        RegistryHelper.getItem(dropInfo.item),
-                        (dropInfo.minCount + dropInfo.maxCount) / 2
-                );
-                outputs.add(outputStack);
+                net.minecraft.world.item.Item dropItem = RegistryHelper.getItem(dropInfo.item);
+                if (dropItem != null) {
+                    ItemStack outputStack = new ItemStack(
+                            dropItem,
+                            (dropInfo.minCount + dropInfo.maxCount) / 2
+                    );
+                    outputs.add(outputStack);
+                } else {
+                    com.mojang.logging.LogUtils.getLogger().error("Drop item not found for ID: {} in recipe for sapling {}", dropInfo.item, saplingId);
+                    throw new IllegalArgumentException("Drop item not found for ID: " + dropInfo.item + " in recipe for sapling " + saplingId);
+                }
             }
         }
 
