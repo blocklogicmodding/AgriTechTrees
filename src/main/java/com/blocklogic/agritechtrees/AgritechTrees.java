@@ -1,6 +1,7 @@
 package com.blocklogic.agritechtrees;
 
 import com.blocklogic.agritechtrees.block.ModBlocks;
+import com.blocklogic.agritechtrees.block.entity.AgritechTreesPlanterBlockEntity;
 import com.blocklogic.agritechtrees.block.entity.ModBlockEntities;
 import com.blocklogic.agritechtrees.block.entity.renderer.AgritechTreesPlanterBlockEntityRenderer;
 import com.blocklogic.agritechtrees.command.AgritechTreesCommands;
@@ -8,6 +9,9 @@ import com.blocklogic.agritechtrees.screen.custom.AgritechTreesPlanterScreen;
 import com.blocklogic.agritechtrees.item.ModCreativeModeTabs;
 import com.blocklogic.agritechtrees.item.ModItems;
 import com.blocklogic.agritechtrees.screen.ModMenuTypes;
+import net.minecraft.core.Direction;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -90,6 +94,23 @@ public class AgritechTrees
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ModMenuTypes.AGRITECH_TREES_PLANTER_MENU.get(), AgritechTreesPlanterScreen::new);
+        }
+
+        @SubscribeEvent
+        public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+            event.registerBlockEntity(
+                    Capabilities.ItemHandler.BLOCK,
+                    ModBlockEntities.AGRITECH_TREES_PLANTER_BLOCK_ENTITY.get(),
+                    (blockEntity, side) -> {
+                        if (side == Direction.UP) {
+                            return null;
+                        } else if (side != null) {
+                            return ((AgritechTreesPlanterBlockEntity) blockEntity).getOutputHandler();
+                        } else {
+                            return ((AgritechTreesPlanterBlockEntity) blockEntity).inventory;
+                        }
+                    }
+            );
         }
     }
 }

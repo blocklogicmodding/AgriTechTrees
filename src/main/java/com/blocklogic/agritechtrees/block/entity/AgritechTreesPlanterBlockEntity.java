@@ -27,11 +27,60 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 public class AgritechTreesPlanterBlockEntity extends BlockEntity implements MenuProvider {
+
+    private class OutputOnlyItemHandler implements IItemHandler {
+        private final ItemStackHandler original;
+        private final int firstOutputSlot;
+        private final int lastOutputSlot;
+
+        public OutputOnlyItemHandler(ItemStackHandler original, int firstOutputSlot, int lastOutputSlot) {
+            this.original = original;
+            this.firstOutputSlot = firstOutputSlot;
+            this.lastOutputSlot = lastOutputSlot;
+        }
+
+        @Override
+        public int getSlots() {
+            return original.getSlots();
+        }
+
+        @NotNull
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return original.getStackInSlot(slot);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return stack;
+        }
+
+        @NotNull
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (slot >= firstOutputSlot && slot <= lastOutputSlot) {
+                return original.extractItem(slot, amount, simulate);
+            }
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return original.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return false; // Don't allow insertion
+        }
+    }
 
     public final ItemStackHandler inventory = new ItemStackHandler(8) {
         @Override
@@ -51,12 +100,19 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
         }
     };
 
+    private final OutputOnlyItemHandler outputHandler;
+
+    public IItemHandler getOutputHandler() {
+        return outputHandler;
+    }
+
     private int growthProgress = 0;
     private int growthTicks = 0;
     private boolean readyToHarvest = false;
 
     public AgritechTreesPlanterBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.AGRITECH_TREES_PLANTER_BLOCK_ENTITY.get(), pos, blockState);
+        this.outputHandler = new OutputOnlyItemHandler(inventory, 2, 7);
     }
 
     @Override
@@ -355,5 +411,4 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
     public int getGrowthStage() {
         return growthProgress > 50 ? 1 : 0;
     }
-
 }
