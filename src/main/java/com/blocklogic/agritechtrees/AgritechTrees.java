@@ -98,18 +98,23 @@ public class AgritechTrees
 
         @SubscribeEvent
         public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-            event.registerBlockEntity(
+            event.registerBlock(
                     Capabilities.ItemHandler.BLOCK,
-                    ModBlockEntities.AGRITECH_TREES_PLANTER_BLOCK_ENTITY.get(),
-                    (blockEntity, side) -> {
-                        if (side == Direction.UP) {
-                            return null;
-                        } else if (side != null) {
-                            return ((AgritechTreesPlanterBlockEntity) blockEntity).getOutputHandler();
-                        } else {
-                            return ((AgritechTreesPlanterBlockEntity) blockEntity).inventory;
+                    (level, pos, state, blockEntity, side) -> {
+                        if (state.is(ModBlocks.AGRITECH_TREES_HOPPING_PLANTER_BLOCK.get())) {
+                            if (blockEntity instanceof AgritechTreesPlanterBlockEntity planter) {
+                                if (side == Direction.UP) {
+                                    return null;
+                                } else if (side != null) {
+                                    return planter.getOutputHandler();
+                                } else {
+                                    return planter.inventory;
+                                }
+                            }
                         }
-                    }
+                        return null;
+                    },
+                    ModBlocks.AGRITECH_TREES_HOPPING_PLANTER_BLOCK.get()
             );
         }
     }

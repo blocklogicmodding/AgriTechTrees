@@ -2,15 +2,20 @@ package com.blocklogic.agritechtrees.block.custom;
 
 import com.blocklogic.agritechtrees.block.entity.AgritechTreesPlanterBlockEntity;
 import com.blocklogic.agritechtrees.block.entity.ModBlockEntities;
+import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
 import com.blocklogic.agritechtrees.screen.custom.AgritechTreesPlanterMenu;
+import com.blocklogic.agritechtrees.util.RegistryHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -69,20 +74,97 @@ public class AgritechTreesHoppingPlanterBlock extends BaseEntityBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos) instanceof AgritechTreesPlanterBlockEntity agritechTreesPlanterBlockEntity) {
+        if (level.getBlockEntity(pos) instanceof AgritechTreesPlanterBlockEntity planterBlockEntity) {
+            if (player.isCrouching()) {
+                if (!level.isClientSide()) {
+                    MenuProvider menuProvider = new SimpleMenuProvider(
+                            (containerId, playerInventory, playerEntity) ->
+                                    new AgritechTreesPlanterMenu(containerId, playerInventory, planterBlockEntity),
+                            Component.translatable("container.agritechtrees.hopping_planter")
+                    );
+
+                    player.openMenu(menuProvider, pos);
+                }
+                return ItemInteractionResult.SUCCESS;
+            }
+
+            ItemStack heldItem = player.getItemInHand(hand);
+            String heldItemId = RegistryHelper.getItemId(heldItem);
+
+            if (AgritechTreesConfig.isValidSapling(heldItemId)) {
+                if (level.isClientSide()) {
+                    return ItemInteractionResult.SUCCESS;
+                }
+
+                if (planterBlockEntity.inventory.getStackInSlot(0).isEmpty()) {
+                    ItemStack soilStack = planterBlockEntity.inventory.getStackInSlot(1);
+                    if (!soilStack.isEmpty()) {
+                        String soilId = RegistryHelper.getItemId(soilStack);
+                        if (!AgritechTreesConfig.isSoilValidForSapling(soilId, heldItemId)) {
+                            player.displayClientMessage(Component.translatable("message.agritechtrees.invalid_seed_soil_combination"), true);
+                            return ItemInteractionResult.SUCCESS;
+                        }
+                    }
+                    ItemStack seedStack = heldItem.copyWithCount(1);
+                    planterBlockEntity.inventory.setStackInSlot(0, seedStack);
+                    heldItem.shrink(1);
+                    level.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+                    level.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
+                    planterBlockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }
+            } else if (AgritechTreesConfig.isValidSoil(heldItemId)) {
+                if (level.isClientSide()) {
+                    return ItemInteractionResult.SUCCESS;
+                }
+
+                if (planterBlockEntity.inventory.getStackInSlot(1).isEmpty()) {
+                    ItemStack seedStack = planterBlockEntity.inventory.getStackInSlot(0);
+                    if (!seedStack.isEmpty()) {
+                        String seedId = RegistryHelper.getItemId(seedStack);
+                        if (!AgritechTreesConfig.isSoilValidForSapling(heldItemId, seedId)) {
+                            player.displayClientMessage(Component.translatable("message.agritechtrees.invalid_seed_soil_combination"), true);
+                            return ItemInteractionResult.SUCCESS;
+                        }
+                    }
+
+                    ItemStack soilStack = heldItem.copyWithCount(1);
+                    planterBlockEntity.inventory.setStackInSlot(1, soilStack);
+                    heldItem.shrink(1);
+                    level.playSound(null, pos, SoundEvents.GRAVEL_PLACE, SoundSource.BLOCKS, 1.0F, 0.8F);
+
+                    level.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
+                    planterBlockEntity.setChanged();
+                    return ItemInteractionResult.SUCCESS;
+                }
+            } else if (heldItem.getItem() instanceof BlockItem) {
+                ItemStack seedStack = planterBlockEntity.inventory.getStackInSlot(0);
+                if (!seedStack.isEmpty() && planterBlockEntity.inventory.getStackInSlot(1).isEmpty()) {
+                    String seedId = RegistryHelper.getItemId(seedStack);
+                    if (AgritechTreesConfig.isValidSoil(heldItemId) &&
+                            !AgritechTreesConfig.isSoilValidForSapling(heldItemId, seedId)) {
+                        if (!level.isClientSide()) {
+                            player.displayClientMessage(Component.translatable("message.agritechtrees.invalid_seed_soil_combination"), true);
+                        }
+                        return ItemInteractionResult.SUCCESS;
+                    }
+                }
+            }
+
             if (!level.isClientSide()) {
                 MenuProvider menuProvider = new SimpleMenuProvider(
                         (containerId, playerInventory, playerEntity) ->
-                                new AgritechTreesPlanterMenu(containerId, playerInventory, agritechTreesPlanterBlockEntity),
+                                new AgritechTreesPlanterMenu(containerId, playerInventory, planterBlockEntity),
                         Component.translatable("container.agritechtrees.hopping_planter")
                 );
 
                 player.openMenu(menuProvider, pos);
             }
-            return ItemInteractionResult.sidedSuccess(level.isClientSide());
+            return ItemInteractionResult.SUCCESS;
         }
 
-        return ItemInteractionResult.SUCCESS;
+        return ItemInteractionResult.FAIL;
     }
 
     @Override

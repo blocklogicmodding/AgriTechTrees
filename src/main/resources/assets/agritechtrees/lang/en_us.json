@@ -12,5 +12,9 @@
   "container.agritechtrees.hopping_planter": "Hopping Trees Planter",
   "container.agritechtrees.planter": "Trees Planter",
 
-  "jei.agritechtrees.planters.tooltip": "Trees Planters"
+  "jei.agritechtrees.planters.tooltip": "Trees Planters",
+
+  "message.agritechtrees.invalid_seed_soil_combination": "This seed cannot grow in this soil!",
+  "message.agritechtrees.invalid_soil": "This block cannot be used as soil!",
+  "message.agritechtrees.slots_full": "The planter slots are full!"
 }
