@@ -78,17 +78,17 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return false; // Don't allow insertion
+            return false;
         }
     }
 
     public final ItemStackHandler inventory = new ItemStackHandler(8) {
         @Override
-        protected int getStackLimit(int slot, ItemStack stack) {
+        public int getSlotLimit(int slot) {
             if (slot == 0) {
                 return 1;
             }
-            return super.getStackLimit(slot, stack);
+            return super.getSlotLimit(slot);
         }
 
         @Override
