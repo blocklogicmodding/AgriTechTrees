@@ -6,42 +6,112 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.loading.FMLPaths;
 import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.appender.FileAppender;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.apache.logging.log4j.core.layout.PatternLayout;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AgritechTreesOverrideConfig {
-    private static final Logger LOGGER = LogUtils.getLogger();
-    private static final String OVERRIDE_FILE_NAME = "saplings_and_soil_override.toml";
+    private static final Logger MAIN_LOGGER = LogUtils.getLogger();
+    private static org.apache.logging.log4j.Logger ERROR_LOGGER = null;
+    private static boolean HAS_LOGGED_ERRORS = false;
+    private static Path ERROR_LOG_PATH = null;
+    private static final String OVERRIDE_FILE_NAME = "agritech_trees_config_overrides.toml";
 
     private static final Pattern TABLE_PATTERN = Pattern.compile("\\[(\\w+)\\.([\\w]+)\\]");
     private static final Pattern KEY_VALUE_PATTERN = Pattern.compile("(\\w+)\\s*=\\s*(.+)");
     private static final Pattern ARRAY_PATTERN = Pattern.compile("\\[\\s*(.*)\\s*\\]");
     private static final Pattern STRING_PATTERN = Pattern.compile("\"([^\"]*)\"");
 
-    // Maps to store line numbers for entries
     private static final Map<String, Integer> treeLineNumbers = new HashMap<>();
     private static final Map<String, Integer> soilLineNumbers = new HashMap<>();
+
+    private static void setupErrorLogger() {
+        ERROR_LOGGER = LogManager.getLogger(AgritechTreesOverrideConfig.class);
+    }
+
+    private static synchronized void createLogFileIfNeeded() {
+        if (HAS_LOGGED_ERRORS) {
+            return; // Log file already created
+        }
+
+        try {
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+            String logFileName = "agritech_trees_config_overrides_errors_" + timestamp + ".log";
+            ERROR_LOG_PATH = FMLPaths.CONFIGDIR.get().resolve("agritechtrees").resolve(logFileName);
+
+            Files.createDirectories(ERROR_LOG_PATH.getParent());
+
+            LoggerContext context = (LoggerContext) LogManager.getContext(false);
+            Configuration config = context.getConfiguration();
+
+            PatternLayout layout = PatternLayout.newBuilder()
+                    .withPattern("%d{yyyy-MM-dd HH:mm:ss} [%p] %m%n")
+                    .build();
+
+            FileAppender appender = FileAppender.newBuilder()
+                    .setName("AgritechTreesOverrideErrorAppender")
+                    .withFileName(ERROR_LOG_PATH.toString())
+                    .setLayout(layout)
+                    .build();
+
+            appender.start();
+
+            config.addAppender(appender);
+
+            LoggerConfig loggerConfig = new LoggerConfig("AgritechTreesOverrideErrorLogger",
+                    org.apache.logging.log4j.Level.INFO, false);
+            loggerConfig.addAppender(appender, org.apache.logging.log4j.Level.INFO, null);
+
+            config.addLogger("AgritechTreesOverrideErrorLogger", loggerConfig);
+            context.updateLoggers();
+
+            ERROR_LOGGER = LogManager.getLogger("AgritechTreesOverrideErrorLogger");
+
+            MAIN_LOGGER.info("Created override config error log file: {}", ERROR_LOG_PATH);
+            HAS_LOGGED_ERRORS = true;
+        } catch (Exception e) {
+            MAIN_LOGGER.error("Failed to set up dedicated error logger: {}", e.getMessage());
+        }
+    }
+
+    private static void logError(String message, Object... params) {
+        createLogFileIfNeeded();
+        ERROR_LOGGER.error(message, params);
+    }
+
+    private static void logWarning(String message, Object... params) {
+        createLogFileIfNeeded();
+        ERROR_LOGGER.warn(message, params);
+    }
 
     public static void loadOverrides(Map<String, AgritechTreesConfig.TreeInfo> trees,
                                      Map<String, AgritechTreesConfig.SoilInfo> soils) {
         Path configDir = FMLPaths.CONFIGDIR.get().resolve("agritechtrees");
         Path overridePath = configDir.resolve(OVERRIDE_FILE_NAME);
 
+        setupErrorLogger();
+
         if (!Files.exists(overridePath)) {
             createDefaultOverrideFile(configDir, overridePath);
         }
 
         try {
-            LOGGER.info("Loading tree and soil overrides from {}", overridePath);
+            MAIN_LOGGER.info("Loading tree and soil overrides from {}", overridePath);
 
-            // Clear the line number maps before parsing
             treeLineNumbers.clear();
             soilLineNumbers.clear();
 
@@ -51,10 +121,11 @@ public class AgritechTreesOverrideConfig {
 
             int soilCount = processSoilEntries(tables.getOrDefault("soils", Collections.emptyMap()), soils);
 
-            LOGGER.info("Successfully loaded {} tree overrides and {} soil overrides", treeCount, soilCount);
+            MAIN_LOGGER.info("Successfully loaded {} tree overrides and {} soil overrides", treeCount, soilCount);
         } catch (Exception e) {
-            LOGGER.error("Failed to load override.toml file: {}", e.getMessage());
-            LOGGER.error("The override file will be ignored, but the mod will continue to function");
+            MAIN_LOGGER.error("Failed to load override.toml file: {}", e.getMessage());
+            logError("Failed to load override.toml file: {}", e.getMessage());
+            logError("The override file will be ignored, but the mod will continue to function");
         }
     }
 
@@ -100,7 +171,6 @@ public class AgritechTreesOverrideConfig {
                     currentSection = tableMatcher.group(1);
                     currentTable = tableMatcher.group(2);
 
-                    // Store the line number for the current entry
                     if ("trees".equals(currentSection)) {
                         treeLineNumbers.put(currentTable, lineNumber);
                     } else if ("soils".equals(currentSection)) {
@@ -288,7 +358,8 @@ public class AgritechTreesOverrideConfig {
                 if (saplingObj == null) {
                     int lineNum = treeLineNumbers.getOrDefault(treeName, -1);
                     String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                    LOGGER.warn("Tree override '{}'{} is missing a sapling ID, skipping", treeName, lineInfo);
+                    MAIN_LOGGER.warn("Tree override '{}'{} is missing a sapling ID, skipping", treeName, lineInfo);
+                    logWarning("Tree override '{}'{} is missing a sapling ID, skipping", treeName, lineInfo);
                     continue;
                 }
 
@@ -298,7 +369,8 @@ public class AgritechTreesOverrideConfig {
                 if (saplingItem == null) {
                     int lineNum = treeLineNumbers.getOrDefault(treeName, -1);
                     String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                    LOGGER.warn("Tree override '{}'{} uses non-existent sapling item: {}, skipping", treeName, lineInfo, saplingId);
+                    MAIN_LOGGER.warn("Tree override '{}'{} uses non-existent sapling item: {}, skipping", treeName, lineInfo, saplingId);
+                    logWarning("Tree override '{}'{} uses non-existent sapling item: {}, skipping", treeName, lineInfo, saplingId);
                     continue;
                 }
 
@@ -311,7 +383,9 @@ public class AgritechTreesOverrideConfig {
                         if (soilBlock == null) {
                             int lineNum = treeLineNumbers.getOrDefault(treeName, -1);
                             String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                            LOGGER.warn("Tree override '{}'{} references non-existent soil block: {}, skipping this soil",
+                            MAIN_LOGGER.warn("Tree override '{}'{} references non-existent soil block: {}, skipping this soil",
+                                    treeName, lineInfo, soilId);
+                            logWarning("Tree override '{}'{} references non-existent soil block: {}, skipping this soil",
                                     treeName, lineInfo, soilId);
                             continue;
                         }
@@ -322,7 +396,8 @@ public class AgritechTreesOverrideConfig {
                 if (validSoils.isEmpty()) {
                     int lineNum = treeLineNumbers.getOrDefault(treeName, -1);
                     String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                    LOGGER.warn("Tree override '{}'{} has no valid soils, skipping", treeName, lineInfo);
+                    MAIN_LOGGER.warn("Tree override '{}'{} has no valid soils, skipping", treeName, lineInfo);
+                    logWarning("Tree override '{}'{} has no valid soils, skipping", treeName, lineInfo);
                     continue;
                 }
 
@@ -357,7 +432,8 @@ public class AgritechTreesOverrideConfig {
                             if (itemObj == null) {
                                 int lineNum = treeLineNumbers.getOrDefault(treeName, -1);
                                 String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                                LOGGER.warn("Tree override '{}'{} has drop without item ID, skipping", treeName, lineInfo);
+                                MAIN_LOGGER.warn("Tree override '{}'{} has drop without item ID, skipping", treeName, lineInfo);
+                                logWarning("Tree override '{}'{} has drop without item ID, skipping", treeName, lineInfo);
                                 continue;
                             }
 
@@ -381,7 +457,9 @@ public class AgritechTreesOverrideConfig {
                         if (dropItem == null) {
                             int lineNum = treeLineNumbers.getOrDefault(treeName, -1);
                             String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                            LOGGER.warn("Tree override '{}'{} references non-existent drop item: {}, skipping this drop",
+                            MAIN_LOGGER.warn("Tree override '{}'{} references non-existent drop item: {}, skipping this drop",
+                                    treeName, lineInfo, dropId);
+                            logWarning("Tree override '{}'{} references non-existent drop item: {}, skipping this drop",
                                     treeName, lineInfo, dropId);
                             continue;
                         }
@@ -393,7 +471,8 @@ public class AgritechTreesOverrideConfig {
                 if (drops.isEmpty()) {
                     int lineNum = treeLineNumbers.getOrDefault(treeName, -1);
                     String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                    LOGGER.warn("Tree override '{}'{} has no valid drops, skipping", treeName, lineInfo);
+                    MAIN_LOGGER.warn("Tree override '{}'{} has no valid drops, skipping", treeName, lineInfo);
+                    logWarning("Tree override '{}'{} has no valid drops, skipping", treeName, lineInfo);
                     continue;
                 }
 
@@ -403,12 +482,13 @@ public class AgritechTreesOverrideConfig {
 
                 trees.put(saplingId, treeInfo);
                 count++;
-                LOGGER.info("Added tree override for '{}' with sapling {}", treeName, saplingId);
+                MAIN_LOGGER.info("Added tree override for '{}' with sapling {}", treeName, saplingId);
 
             } catch (Exception e) {
                 int lineNum = treeLineNumbers.getOrDefault(treeName, -1);
                 String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                LOGGER.error("Error processing tree override '{}'{}: {}", treeName, lineInfo, e.getMessage());
+                MAIN_LOGGER.error("Error processing tree override '{}'{}: {}", treeName, lineInfo, e.getMessage());
+                logError("Error processing tree override '{}'{}: {}", treeName, lineInfo, e.getMessage());
             }
         }
 
@@ -428,7 +508,8 @@ public class AgritechTreesOverrideConfig {
                 if (blockObj == null) {
                     int lineNum = soilLineNumbers.getOrDefault(soilName, -1);
                     String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                    LOGGER.warn("Soil override '{}'{} is missing a block ID, skipping", soilName, lineInfo);
+                    MAIN_LOGGER.warn("Soil override '{}'{} is missing a block ID, skipping", soilName, lineInfo);
+                    logWarning("Soil override '{}'{} is missing a block ID, skipping", soilName, lineInfo);
                     continue;
                 }
 
@@ -438,7 +519,8 @@ public class AgritechTreesOverrideConfig {
                 if (soilBlock == null) {
                     int lineNum = soilLineNumbers.getOrDefault(soilName, -1);
                     String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                    LOGGER.warn("Soil override '{}'{} uses non-existent block: {}, skipping", soilName, lineInfo, soilId);
+                    MAIN_LOGGER.warn("Soil override '{}'{} uses non-existent block: {}, skipping", soilName, lineInfo, soilId);
+                    logWarning("Soil override '{}'{} uses non-existent block: {}, skipping", soilName, lineInfo, soilId);
                     continue;
                 }
 
@@ -452,12 +534,13 @@ public class AgritechTreesOverrideConfig {
                 soils.put(soilId, soilInfo);
                 count++;
 
-                LOGGER.info("Added soil override for '{}' with block {}", soilName, soilId);
+                MAIN_LOGGER.info("Added soil override for '{}' with block {}", soilName, soilId);
 
             } catch (Exception e) {
                 int lineNum = soilLineNumbers.getOrDefault(soilName, -1);
                 String lineInfo = lineNum > 0 ? " (line " + lineNum + ")" : "";
-                LOGGER.error("Error processing soil override '{}'{}: {}", soilName, lineInfo, e.getMessage());
+                MAIN_LOGGER.error("Error processing soil override '{}'{}: {}", soilName, lineInfo, e.getMessage());
+                logError("Error processing soil override '{}'{}: {}", soilName, lineInfo, e.getMessage());
             }
         }
 
@@ -466,7 +549,6 @@ public class AgritechTreesOverrideConfig {
 
     private static void createDefaultOverrideFile(Path configDir, Path overridePath) {
         try {
-            // Create directory if it doesn't exist
             if (!Files.exists(configDir)) {
                 Files.createDirectories(configDir);
             }
@@ -475,10 +557,13 @@ public class AgritechTreesOverrideConfig {
                 writer.write(createBasicTemplate());
             }
 
-            LOGGER.info("Created default override.toml file with examples at {}", overridePath);
+            MAIN_LOGGER.info("Created default override.toml file with examples at {}", overridePath);
 
         } catch (IOException e) {
-            LOGGER.error("Failed to create default override.toml file: {}", e.getMessage());
+            MAIN_LOGGER.error("Failed to create default override.toml file: {}", e.getMessage());
+            if (HAS_LOGGED_ERRORS) {
+                ERROR_LOGGER.error("Failed to create default override.toml file: {}", e.getMessage());
+            }
         }
     }
 
