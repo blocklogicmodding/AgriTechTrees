@@ -45,18 +45,27 @@ public class AgritechTreesOverrideConfig {
 
     private static synchronized void createLogFileIfNeeded() {
         if (HAS_LOGGED_ERRORS) {
-            return; // Log file already created
+            return;
         }
 
         try {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
-            String logFileName = "agritech_trees_config_overrides_errors_" + timestamp + ".log";
-            ERROR_LOG_PATH = FMLPaths.CONFIGDIR.get().resolve("agritechtrees").resolve(logFileName);
+            String logFileName = "agritechtrees_config_overrides_errors_" + timestamp + ".log";
+            ERROR_LOG_PATH = FMLPaths.CONFIGDIR.get().resolve("agritechtrees").resolve("config_logs").resolve(logFileName);
 
             Files.createDirectories(ERROR_LOG_PATH.getParent());
 
             LoggerContext context = (LoggerContext) LogManager.getContext(false);
             Configuration config = context.getConfiguration();
+
+            LoggerConfig existingLogger = config.getLoggerConfig("AgritechTreesOverrideErrorLogger");
+            if (existingLogger != null) {
+                existingLogger.getAppenders().forEach((name, appender) -> {
+                    existingLogger.removeAppender(name);
+                    appender.stop();
+                });
+                config.removeLogger("AgritechTreesOverrideErrorLogger");
+            }
 
             PatternLayout layout = PatternLayout.newBuilder()
                     .withPattern("%d{yyyy-MM-dd HH:mm:ss} [%p] %m%n")
@@ -66,6 +75,7 @@ public class AgritechTreesOverrideConfig {
                     .setName("AgritechTreesOverrideErrorAppender")
                     .withFileName(ERROR_LOG_PATH.toString())
                     .setLayout(layout)
+                    .setConfiguration(config)
                     .build();
 
             appender.start();
@@ -565,6 +575,12 @@ public class AgritechTreesOverrideConfig {
                 ERROR_LOGGER.error("Failed to create default override.toml file: {}", e.getMessage());
             }
         }
+    }
+
+    public static void resetErrorFlag() {
+        HAS_LOGGED_ERRORS = false;
+        ERROR_LOGGER = null;
+        ERROR_LOG_PATH = null;
     }
 
     private static String createBasicTemplate() {

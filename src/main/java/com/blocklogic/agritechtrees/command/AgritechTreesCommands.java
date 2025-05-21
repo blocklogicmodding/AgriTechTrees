@@ -2,6 +2,7 @@ package com.blocklogic.agritechtrees.command;
 
 import com.blocklogic.agritechtrees.Config;
 import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
+import com.blocklogic.agritechtrees.config.AgritechTreesOverrideConfig;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
@@ -17,6 +18,7 @@ public class AgritechTreesCommands {
                                 .then(Commands.literal("saplings")
                                         .executes(context -> {
                                             try {
+                                                AgritechTreesOverrideConfig.resetErrorFlag();
                                                 AgritechTreesConfig.loadConfig();
                                                 context.getSource().sendSuccess(() ->
                                                         Component.literal("AgriTech Trees sapling config reloaded successfully!"), true);
@@ -44,6 +46,7 @@ public class AgritechTreesCommands {
                                 )
                                 .executes(context -> {
                                     try {
+                                        AgritechTreesOverrideConfig.resetErrorFlag();
                                         Config.loadConfig();
                                         AgritechTreesConfig.loadConfig();
                                         context.getSource().sendSuccess(() ->
