@@ -19,7 +19,6 @@ public class Config
             .comment("INFO: If you change any of the values below, delete 'config/agritechtrees/saplings_and_soils.json' and restart your client to regenerate the crop config!")
             .define("infoIs", true);
 
-    // Mod compatibility section
     private static final ModConfigSpec.BooleanValue ENABLE_ARS_ELEMENTAL = BUILDER
             .comment("Enable Ars Elemental Archwood Trees. Default: true")
             .define("addArsElementalTrees", true);
@@ -69,9 +68,7 @@ public class Config
         return obj instanceof String itemName && BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(itemName));
     }
 
-    @SubscribeEvent
-    static void onLoad(final ModConfigEvent event)
-    {
+    public static void loadConfig() {
         enableArsElemental = ENABLE_ARS_ELEMENTAL.get() && ModList.get().isLoaded("ars_elemental");
         enableArsNouveau = ENABLE_ARS_NOUVEAU.get() && ModList.get().isLoaded("ars_nouveau");
         enableTwilightForest = ENABLE_TWILIGHT_FOREST.get() && ModList.get().isLoaded("twilightforest");
@@ -80,7 +77,12 @@ public class Config
         enableIntegratedDynamics = ENABLE_INTEGRATED_DYNAMICS.get() && ModList.get().isLoaded("integrateddynamics");
         enableOccultism = ENABLE_OCCULTISM.get() && ModList.get().isLoaded("occultism");
         enableHexerei = ENABLE_HEXEREI.get() && ModList.get().isLoaded("hexerei");
+    }
 
+    @SubscribeEvent
+    static void onLoad(final ModConfigEvent event)
+    {
+        loadConfig();
         AgritechTreesConfig.loadConfig();
     }
 }
