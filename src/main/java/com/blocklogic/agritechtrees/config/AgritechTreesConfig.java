@@ -36,6 +36,8 @@ public class AgritechTreesConfig {
             LOGGER.info("Loading default tree configuration instead");
             processConfig(getDefaultConfig());
         }
+
+        AgritechTreesOverrideConfig.loadOverrides(trees, soils);
     }
 
     private static void createDefaultConfig(Path configPath) {
