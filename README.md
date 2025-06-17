@@ -37,4 +37,13 @@ Configuration is located at `config/agritechtrees/saplings_and_soil.json`
 
 ## License
 
-All Rights Reserved
+All rights reserved. This mod is protected by copyright and may not be redistributed or modified without explicit permission.
+
+**Permitted Uses:**
+
+-   Inclusion in modpacks (public or private)
+-   Content creation (videos, streams, reviews, etc.)
+
+----------
+
+[**Wiki**](https://github.com/blocklogicmodding/AgriTechTrees/wiki) | [**Issue Tracker**](https://github.com/blocklogicmodding/AgriTechTrees/issues) | [**BLM Discord**](https://discord.gg/YtdA3AMqsXe)
