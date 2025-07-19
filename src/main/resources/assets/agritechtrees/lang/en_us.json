@@ -1,18 +1,18 @@
 {
-  "block.agritechtrees.agritech_trees_planter_block": "Agritech Trees Planter",
-  "block.agritechtrees.agritech_trees_hopping_planter_block": "Agritech Trees Hopping Planter",
+  "block.agritechtrees.agritech_trees_planter_block": "Tree Planter",
+  "block.agritechtrees.agritech_trees_hopping_planter_block": "Tree Hopping Planter",
 
-  "blockentity.agritechtrees.name": "Agritech Tree Planter",
+  "blockentity.agritechtrees.name": "Tree Planter",
 
   "creativetab.agritech_trees.agritech_trees": "AgriTech Trees",
 
   "tooltip.agritech_trees.agritech_trees_planter_block": "A Planter to grow saplings in!",
   "tooltip.agritech_trees.agritech_trees_hopping_planter_block": "A Planter with a hopper to grow saplings in!",
 
-  "container.agritechtrees.hopping_planter": "Hopping Trees Planter",
-  "container.agritechtrees.planter": "Trees Planter",
+  "container.agritechtrees.hopping_planter": "Hopping Tree Planter",
+  "container.agritechtrees.planter": "Tree Planter",
 
-  "jei.agritechtrees.planters.tooltip": "Trees Planters",
+  "jei.agritechtrees.planters.tooltip": "Tree Planters",
 
   "message.agritechtrees.invalid_seed_soil_combination": "This seed cannot grow in this soil!",
   "message.agritechtrees.invalid_soil": "This block cannot be used as soil!",
