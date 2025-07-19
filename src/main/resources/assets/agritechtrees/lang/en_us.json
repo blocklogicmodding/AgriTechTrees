@@ -16,5 +16,8 @@
 
   "message.agritechtrees.invalid_seed_soil_combination": "This seed cannot grow in this soil!",
   "message.agritechtrees.invalid_soil": "This block cannot be used as soil!",
-  "message.agritechtrees.slots_full": "The planter slots are full!"
+  "message.agritechtrees.slots_full": "The planter slots are full!",
+
+  "tooltip.agritech.growth_progress": "Growth Progress",
+  "tooltip.agritech.view_recipes": "Click to view recipes"
 }

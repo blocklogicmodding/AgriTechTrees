@@ -119,7 +119,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         oak.drops = new ArrayList<>();
 
@@ -156,7 +157,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         birch.drops = new ArrayList<>();
 
@@ -187,7 +189,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         spruce.drops = new ArrayList<>();
 
@@ -218,7 +221,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         jungle.drops = new ArrayList<>();
 
@@ -255,7 +259,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         acacia.drops = new ArrayList<>();
 
@@ -286,7 +291,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         darkOak.drops = new ArrayList<>();
 
@@ -325,7 +331,8 @@ public class AgritechTreesConfig {
                 "minecraft:coarse_dirt",
                 "minecraft:grass_block",
                 "minecraft:podzol",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         mangrove.drops = new ArrayList<>();
 
@@ -362,7 +369,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         cherry.drops = new ArrayList<>();
 
@@ -395,7 +403,8 @@ public class AgritechTreesConfig {
                 "minecraft:coarse_dirt",
                 "minecraft:rooted_dirt",
                 "minecraft:moss_block",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         azalea.drops = new ArrayList<>();
 
@@ -434,7 +443,8 @@ public class AgritechTreesConfig {
                 "minecraft:coarse_dirt",
                 "minecraft:rooted_dirt",
                 "minecraft:moss_block",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         floweringAzalea.drops = new ArrayList<>();
 
@@ -468,7 +478,8 @@ public class AgritechTreesConfig {
         crimson.sapling = "minecraft:crimson_fungus";
         crimson.validSoils = List.of(
                 "minecraft:crimson_nylium",
-                "minecraft:warped_nylium"
+                "minecraft:warped_nylium",
+                "agritechevolved:mulch"
         );
         crimson.drops = new ArrayList<>();
 
@@ -499,7 +510,8 @@ public class AgritechTreesConfig {
         warped.sapling = "minecraft:warped_fungus";
         warped.validSoils = List.of(
                 "minecraft:crimson_nylium",
-                "minecraft:warped_nylium"
+                "minecraft:warped_nylium",
+                "agritechevolved:mulch"
         );
         warped.drops = new ArrayList<>();
 
@@ -535,7 +547,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         yellowArchwood.drops = new ArrayList<>();
 
@@ -574,7 +587,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         blueArchwood.drops = new ArrayList<>();
 
@@ -611,7 +625,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         redArchwood.drops = new ArrayList<>();
 
@@ -648,7 +663,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         purpleArchwood.drops = new ArrayList<>();
 
@@ -685,7 +701,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         greenArchwood.drops = new ArrayList<>();
 
@@ -724,7 +741,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         twilightOak.drops = new ArrayList<>();
 
@@ -754,7 +772,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         canopy.drops = new ArrayList<>();
 
@@ -784,7 +803,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         twilightMangrove.drops = new ArrayList<>();
 
@@ -814,7 +834,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         darkWood.drops = new ArrayList<>();
 
@@ -844,7 +865,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         rainbowOak.drops = new ArrayList<>();
 
@@ -876,7 +898,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         undead.drops = new ArrayList<>();
 
@@ -902,7 +925,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         aurum.drops = new ArrayList<>();
 
@@ -938,7 +962,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         edelwood.drops = new ArrayList<>();
 
@@ -965,7 +990,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         menril.drops = new ArrayList<>();
 
@@ -1009,7 +1035,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         mahogany.drops = new ArrayList<>();
 
@@ -1039,7 +1066,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         willow.drops = new ArrayList<>();
 
@@ -1069,7 +1097,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         witchHazel.drops = new ArrayList<>();
 
@@ -1101,7 +1130,8 @@ public class AgritechTreesConfig {
                 "minecraft:grass_block",
                 "minecraft:podzol",
                 "minecraft:coarse_dirt",
-                "minecraft:mycelium"
+                "minecraft:mycelium",
+                "agritechevolved:mulch"
         );
         otherworld.drops = new ArrayList<>();
 
@@ -1173,6 +1203,11 @@ public class AgritechTreesConfig {
         warpedNylium.soil = "minecraft:warped_nylium";
         warpedNylium.growthModifier = 0.6f;
         soils.add(warpedNylium);
+
+        SoilEntry agritechEvolvedMulch = new SoilEntry();
+        agritechEvolvedMulch.soil = "agritechevolved:mulch";
+        agritechEvolvedMulch.growthModifier = 1.5f;
+        soils.add(agritechEvolvedMulch);
     }
 
     private static void processConfig(TreeConfigData configData) {

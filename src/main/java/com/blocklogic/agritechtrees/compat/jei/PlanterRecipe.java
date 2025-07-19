@@ -2,9 +2,12 @@ package com.blocklogic.agritechtrees.compat.jei;
 
 import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
 import com.blocklogic.agritechtrees.util.RegistryHelper;
+import com.mojang.logging.LogUtils;
 import mezz.jei.api.recipe.category.extensions.IRecipeCategoryExtension;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,15 +40,15 @@ public class PlanterRecipe implements IRecipeCategoryExtension {
     }
 
     public static PlanterRecipe create(String saplingId, String soilId) {
-        net.minecraft.world.item.Item saplingItem = RegistryHelper.getItem(saplingId);
+        Item saplingItem = RegistryHelper.getItem(saplingId);
         if (saplingItem == null) {
-            com.mojang.logging.LogUtils.getLogger().error("Failed to create tree planter recipe: Sapling item not found for ID: {}", saplingId);
+            LogUtils.getLogger().error("Failed to create tree planter recipe: Sapling item not found for ID: {}", saplingId);
             throw new IllegalArgumentException("Sapling item not found for ID: " + saplingId);
         }
 
-        net.minecraft.world.level.block.Block soilBlock = RegistryHelper.getBlock(soilId);
+        Block soilBlock = RegistryHelper.getBlock(soilId);
         if (soilBlock == null) {
-            com.mojang.logging.LogUtils.getLogger().error("Failed to create tree planter recipe: Soil block not found for ID: {}", soilId);
+            LogUtils.getLogger().error("Failed to create tree planter recipe: Soil block not found for ID: {}", soilId);
             throw new IllegalArgumentException("Soil block not found for ID: " + soilId);
         }
 
@@ -57,7 +60,7 @@ public class PlanterRecipe implements IRecipeCategoryExtension {
 
         for (AgritechTreesConfig.DropInfo dropInfo : drops) {
             if (dropInfo.chance > 0) {
-                net.minecraft.world.item.Item dropItem = RegistryHelper.getItem(dropInfo.item);
+                Item dropItem = RegistryHelper.getItem(dropInfo.item);
                 if (dropItem != null) {
                     ItemStack outputStack = new ItemStack(
                             dropItem,
@@ -65,7 +68,7 @@ public class PlanterRecipe implements IRecipeCategoryExtension {
                     );
                     outputs.add(outputStack);
                 } else {
-                    com.mojang.logging.LogUtils.getLogger().error("Drop item not found for ID: {} in recipe for sapling {}", dropInfo.item, saplingId);
+                    LogUtils.getLogger().error("Drop item not found for ID: {} in recipe for sapling {}", dropInfo.item, saplingId);
                     throw new IllegalArgumentException("Drop item not found for ID: " + dropInfo.item + " in recipe for sapling " + saplingId);
                 }
             }

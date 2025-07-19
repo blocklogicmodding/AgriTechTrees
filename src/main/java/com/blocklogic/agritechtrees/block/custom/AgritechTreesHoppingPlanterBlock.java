@@ -91,7 +91,7 @@ public class AgritechTreesHoppingPlanterBlock extends BaseEntityBlock {
             ItemStack heldItem = player.getItemInHand(hand);
             String heldItemId = RegistryHelper.getItemId(heldItem);
 
-            if (AgritechTreesConfig.isValidSapling(heldItemId)) {
+            if (AgritechTreesConfig.isValidSapling(heldItemId) && !AgritechTreesConfig.isValidSoil(heldItemId)) {
                 if (level.isClientSide()) {
                     return ItemInteractionResult.SUCCESS;
                 }

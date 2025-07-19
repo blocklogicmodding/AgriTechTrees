@@ -408,6 +408,10 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
         return growthProgress / 100f;
     }
 
+    public int getProgressBarWidth(int maxWidth) {
+        return (int) (getGrowthProgress() * maxWidth);
+    }
+
     public int getGrowthStage() {
         return growthProgress > 50 ? 1 : 0;
     }

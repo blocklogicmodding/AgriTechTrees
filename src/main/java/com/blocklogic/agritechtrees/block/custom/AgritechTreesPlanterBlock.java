@@ -80,7 +80,7 @@ public class AgritechTreesPlanterBlock extends BaseEntityBlock {
                     MenuProvider menuProvider = new SimpleMenuProvider(
                             (containerId, playerInventory, playerEntity) ->
                                     new AgritechTreesPlanterMenu(containerId, playerInventory, planterBlockEntity),
-                            Component.translatable("container.agritechtrees.hopping_planter")
+                            Component.translatable("container.agritechtrees.planter")
                     );
 
                     player.openMenu(menuProvider, pos);
@@ -91,7 +91,7 @@ public class AgritechTreesPlanterBlock extends BaseEntityBlock {
             ItemStack heldItem = player.getItemInHand(hand);
             String heldItemId = RegistryHelper.getItemId(heldItem);
 
-            if (AgritechTreesConfig.isValidSapling(heldItemId)) {
+            if (AgritechTreesConfig.isValidSapling(heldItemId) && !AgritechTreesConfig.isValidSoil(heldItemId)) {
                 if (level.isClientSide()) {
                     return ItemInteractionResult.SUCCESS;
                 }
@@ -156,7 +156,7 @@ public class AgritechTreesPlanterBlock extends BaseEntityBlock {
                 MenuProvider menuProvider = new SimpleMenuProvider(
                         (containerId, playerInventory, playerEntity) ->
                                 new AgritechTreesPlanterMenu(containerId, playerInventory, planterBlockEntity),
-                        Component.translatable("container.agritechtrees.hopping_planter")
+                        Component.translatable("container.agritechtrees.planter")
                 );
 
                 player.openMenu(menuProvider, pos);

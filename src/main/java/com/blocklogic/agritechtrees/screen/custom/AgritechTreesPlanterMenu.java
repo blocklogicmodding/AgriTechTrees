@@ -28,6 +28,9 @@ public class AgritechTreesPlanterMenu extends AbstractContainerMenu {
 
     private final Level level;
 
+    private int progressTicks = 0;
+    private int maxProgressTicks = 0;
+
     public AgritechTreesPlanterMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
         this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
     }
@@ -113,14 +116,14 @@ public class AgritechTreesPlanterMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new SaplingSlot(this.blockEntity.inventory, 0, 44, 30, this.blockEntity));
-        this.addSlot(new SoilSlot(this.blockEntity.inventory, 1, 44, 48, this.blockEntity));
+        this.addSlot(new SaplingSlot(this.blockEntity.inventory, 0, 26, 18, this.blockEntity));
+        this.addSlot(new SoilSlot(this.blockEntity.inventory, 1, 26, 54, this.blockEntity));
 
         int outputSlotIndex = 2;
         for (int row = 0; row < 2; row++) {
             for (int col = 0; col < 3; col++) {
                 this.addSlot(new OutputSlot(this.blockEntity.inventory, outputSlotIndex++,
-                        80 + col * 18, 30 + row * 18));
+                        80 + col * 18, 27 + row * 18));
             }
         }
     }
@@ -178,6 +181,20 @@ public class AgritechTreesPlanterMenu extends AbstractContainerMenu {
         return copyOfSourceStack;
     }
 
+    public void updateProgressData(int progressTicks, int maxProgressTicks) {
+        this.progressTicks = progressTicks;
+        this.maxProgressTicks = maxProgressTicks;
+    }
+
+    public float getProgressPercentage() {
+        if (maxProgressTicks <= 0) return 0.0f;
+        return (float) progressTicks / (float) maxProgressTicks;
+    }
+
+    public int getProgressBarWidth(int maxWidth) {
+        return (int) (getProgressPercentage() * maxWidth);
+    }
+
     @Override
     public boolean stillValid(Player player) {
         Block block = blockEntity.getBlockState().getBlock();
@@ -192,14 +209,14 @@ public class AgritechTreesPlanterMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int l = 0; l < 9; l++) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 87 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 146));
         }
     }
 }
