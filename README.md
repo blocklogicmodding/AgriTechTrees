@@ -8,6 +8,7 @@ AgriTech Trees introduces customizable planters that streamline tree growing and
 - **Hopping Planters**: Automatically output harvested items to containers below
 - **Internal Storage**: Built-in inventory to store harvested trees
 - **Wide Sapling Compatibility**: Works with vanilla saplings and many modded saplings
+- **Jade Support**: Displays planter status and contents with Jade HUD tooltips
 
 ## Supported Saplings
 
@@ -25,6 +26,9 @@ AgriTech integrates with:
 - **Forbidden Arcanus**
 - **EvilCraft**
 - **Hexerei**
+
+## Wood Variants
+- Planters are available in all 11 vanilla wood types
 
 ## Configuration
 
