@@ -46,5 +46,9 @@
   "message.agritechtrees.slots_full": "The planter slots are full!",
 
   "tooltip.agritech.growth_progress": "Growth Progress",
-  "tooltip.agritech.view_recipes": "Click to view recipes"
+  "tooltip.agritech.view_recipes": "Click to view recipes",
+
+  "jade.agritechtrees.tree_ready": "%s is ready to harvest!",
+  "jade.agritechtrees.tree_progress": "%s: %d%% grown",
+  "jade.agritechtrees.soil_info": "Soil: %s (%s growth speed)"
 }

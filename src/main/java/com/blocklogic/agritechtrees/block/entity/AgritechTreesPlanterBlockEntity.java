@@ -161,15 +161,16 @@ public class AgritechTreesPlanterBlockEntity extends BlockEntity implements Menu
             blockEntity.growthTicks++;
 
             int baseGrowthTime = AgritechTreesConfig.getBaseSaplingGrowthTime(saplingId);
+            int actualGrowthTime = (int) (baseGrowthTime / growthModifier);
 
-            if (blockEntity.growthTicks >= baseGrowthTime / growthModifier) {
+            if (blockEntity.growthTicks >= actualGrowthTime) {
                 blockEntity.readyToHarvest = true;
                 blockEntity.growthProgress = 100;
 
                 level.sendBlockUpdated(pos, state, state, 3);
                 blockEntity.setChanged();
             } else {
-                blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)baseGrowthTime) * 100);
+                blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)actualGrowthTime) * 100);
 
                 if (blockEntity.growthTicks % 20 == 0) {
                     level.sendBlockUpdated(pos, state, state, 3);
