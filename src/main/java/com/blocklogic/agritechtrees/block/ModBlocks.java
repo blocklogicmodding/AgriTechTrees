@@ -1,14 +1,10 @@
 package com.blocklogic.agritechtrees.block;
 
 import com.blocklogic.agritechtrees.AgritechTrees;
-import com.blocklogic.agritechtrees.block.custom.AgritechTreesHoppingPlanterBlock;
-import com.blocklogic.agritechtrees.block.custom.AgritechTreesPlanterBlock;
+import com.blocklogic.agritechtrees.block.custom.*;
 import com.blocklogic.agritechtrees.item.ModItems;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -16,7 +12,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -26,25 +21,134 @@ public class ModBlocks {
             () -> new AgritechTreesPlanterBlock(BlockBehaviour.Properties.of()
                     .strength(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
-                    .noOcclusion()) {
-                @Override
-                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.agritech_trees.agritech_trees_planter_block"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
+                    .noOcclusion()));
 
     public static final DeferredBlock<Block> AGRITECH_TREES_HOPPING_PLANTER_BLOCK = registerBlock("agritech_trees_hopping_planter_block",
             () -> new AgritechTreesHoppingPlanterBlock(BlockBehaviour.Properties.of()
                     .strength(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
-                    .noOcclusion()) {
-                @Override
-                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.agritech_trees.agritech_trees_hopping_planter_block"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> ACACIA_PLANTER_BLOCK = registerBlock("acacia_planter",
+            () -> new AcaciaPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> ACACIA_HOPPING_PLANTER_BLOCK = registerBlock("acacia_hopping_planter",
+            () -> new AcaciaHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+
+    public static final DeferredBlock<Block> BAMBOO_PLANTER_BLOCK = registerBlock("bamboo_planter",
+            () -> new BambooPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BAMBOO_HOPPING_PLANTER_BLOCK = registerBlock("bamboo_hopping_planter",
+            () -> new BambooHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BIRCH_PLANTER_BLOCK = registerBlock("birch_planter",
+            () -> new BirchPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BIRCH_HOPPING_PLANTER_BLOCK = registerBlock("birch_hopping_planter",
+            () -> new BirchHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> CHERRY_PLANTER_BLOCK = registerBlock("cherry_planter",
+            () -> new CherryPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> CHERRY_HOPPING_PLANTER_BLOCK = registerBlock("cherry_hopping_planter",
+            () -> new CherryHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> CRIMSON_PLANTER_BLOCK = registerBlock("crimson_planter",
+            () -> new CrimsonPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> CRIMSON_HOPPING_PLANTER_BLOCK = registerBlock("crimson_hopping_planter",
+            () -> new CrimsonHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> DARK_OAK_PLANTER_BLOCK = registerBlock("dark_oak_planter",
+            () -> new DarkOakPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> DARK_OAK_HOPPING_PLANTER_BLOCK = registerBlock("dark_oak_hopping_planter",
+            () -> new DarkOakHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> JUNGLE_PLANTER_BLOCK = registerBlock("jungle_planter",
+            () -> new JunglePlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> JUNGLE_HOPPING_PLANTER_BLOCK = registerBlock("jungle_hopping_planter",
+            () -> new JungleHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> MANGROVE_PLANTER_BLOCK = registerBlock("mangrove_planter",
+            () -> new MangrovePlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> MANGROVE_HOPPING_PLANTER_BLOCK = registerBlock("mangrove_hopping_planter",
+            () -> new MangroveHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> SPRUCE_PLANTER_BLOCK = registerBlock("spruce_planter",
+            () -> new SprucePlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> SPRUCE_HOPPING_PLANTER_BLOCK = registerBlock("spruce_hopping_planter",
+            () -> new SpruceHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> WARPED_PLANTER_BLOCK = registerBlock("warped_planter",
+            () -> new WarpedPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> WARPED_HOPPING_PLANTER_BLOCK = registerBlock("warped_hopping_planter",
+            () -> new WarpedHoppingPlanter(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
 
     private static <T extends Block>DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

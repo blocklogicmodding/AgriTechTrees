@@ -27,8 +27,8 @@ public class AgritechTreesPlanterBlockEntityRenderer implements BlockEntityRende
                 BlockState soilState = blockItem.getBlock().defaultBlockState();
 
                 poseStack.pushPose();
-                poseStack.translate(0.135, 0.4, 0.135);
-                poseStack.scale(0.77f, 0.4f, 0.77f);
+                poseStack.translate(0.175, 0.4, 0.175);
+                poseStack.scale(0.65f, 0.05f, 0.65f);
 
                 BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
                 dispatcher.renderSingleBlock(soilState, poseStack, bufferSource, packedLight, OverlayTexture.NO_OVERLAY);
@@ -48,7 +48,7 @@ public class AgritechTreesPlanterBlockEntityRenderer implements BlockEntityRende
 
                 poseStack.pushPose();
 
-                poseStack.translate(0.5, 0.8, 0.5);
+                poseStack.translate(0.5, 0.45, 0.5);
 
                 float growthProgress = blockEntity.getGrowthProgress();
 

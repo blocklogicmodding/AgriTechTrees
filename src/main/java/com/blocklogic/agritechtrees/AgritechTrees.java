@@ -101,7 +101,18 @@ public class AgritechTrees
             event.registerBlock(
                     Capabilities.ItemHandler.BLOCK,
                     (level, pos, state, blockEntity, side) -> {
-                        if (state.is(ModBlocks.AGRITECH_TREES_HOPPING_PLANTER_BLOCK.get())) {
+                        if (state.is(ModBlocks.AGRITECH_TREES_HOPPING_PLANTER_BLOCK.get())||
+                                state.is(ModBlocks.ACACIA_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.BAMBOO_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.BIRCH_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.CHERRY_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.CRIMSON_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.DARK_OAK_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.JUNGLE_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.MANGROVE_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.SPRUCE_HOPPING_PLANTER_BLOCK.get()) ||
+                                state.is(ModBlocks.WARPED_HOPPING_PLANTER_BLOCK.get())
+                        ) {
                             if (blockEntity instanceof AgritechTreesPlanterBlockEntity planter) {
                                 if (side == Direction.UP) {
                                     return null;
@@ -114,7 +125,17 @@ public class AgritechTrees
                         }
                         return null;
                     },
-                    ModBlocks.AGRITECH_TREES_HOPPING_PLANTER_BLOCK.get()
+                    ModBlocks.AGRITECH_TREES_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.ACACIA_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.BAMBOO_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.BIRCH_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.CHERRY_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.CRIMSON_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.DARK_OAK_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.JUNGLE_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.MANGROVE_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.SPRUCE_HOPPING_PLANTER_BLOCK.get(),
+                    ModBlocks.WARPED_HOPPING_PLANTER_BLOCK.get()
             );
         }
     }

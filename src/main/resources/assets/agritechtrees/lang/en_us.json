@@ -1,13 +1,40 @@
 {
-  "block.agritechtrees.agritech_trees_planter_block": "Tree Planter",
-  "block.agritechtrees.agritech_trees_hopping_planter_block": "Tree Hopping Planter",
+  "block.agritechtrees.acacia_planter": "Acacia Tree Planter",
+  "block.agritechtrees.acacia_hopping_planter": "Acacia Hopping Tree Planter",
+
+  "block.agritechtrees.bamboo_planter": "Bamboo Tree Planter",
+  "block.agritechtrees.bamboo_hopping_planter": "Bamboo Hopping Tree Planter",
+
+  "block.agritechtrees.birch_planter": "Birch Tree Planter",
+  "block.agritechtrees.birch_hopping_planter": "Birch Hopping Tree Planter",
+
+  "block.agritechtrees.cherry_planter": "Cherry Tree Planter",
+  "block.agritechtrees.cherry_hopping_planter": "Cherry Hopping Tree Planter",
+
+  "block.agritechtrees.crimson_planter": "Crimson Tree Planter",
+  "block.agritechtrees.crimson_hopping_planter": "Crimson Hopping Tree Planter",
+
+  "block.agritechtrees.dark_oak_planter": "Dark Oak Tree Planter",
+  "block.agritechtrees.dark_oak_hopping_planter": "Dark Oak Hopping Tree Planter",
+
+  "block.agritechtrees.jungle_planter": "Jungle Tree Planter",
+  "block.agritechtrees.jungle_hopping_planter": "Jungle Hopping Tree Planter",
+
+  "block.agritechtrees.mangrove_planter": "Mangrove Tree Planter",
+  "block.agritechtrees.mangrove_hopping_planter": "Mangrove Hopping Tree Planter",
+
+  "block.agritechtrees.agritech_trees_planter_block": "Oak Tree Planter",
+  "block.agritechtrees.agritech_trees_hopping_planter_block": "Oak Hopping Tree Planter",
+
+  "block.agritechtrees.spruce_planter": "Spruce Tree Planter",
+  "block.agritechtrees.spruce_hopping_planter": "Spruce Hopping Tree Planter",
+
+  "block.agritechtrees.warped_planter": "Warped Tree Planter",
+  "block.agritechtrees.warped_hopping_planter": "Warped Hopping Tree Planter",
 
   "blockentity.agritechtrees.name": "Tree Planter",
 
-  "creativetab.agritech_trees.agritech_trees": "AgriTech Trees",
-
-  "tooltip.agritech_trees.agritech_trees_planter_block": "A Planter to grow saplings in!",
-  "tooltip.agritech_trees.agritech_trees_hopping_planter_block": "A Planter with a hopper to grow saplings in!",
+  "creativetab.agritech_trees.agritech_trees": "AgriTech: Trees",
 
   "container.agritechtrees.hopping_planter": "Hopping Tree Planter",
   "container.agritechtrees.planter": "Tree Planter",

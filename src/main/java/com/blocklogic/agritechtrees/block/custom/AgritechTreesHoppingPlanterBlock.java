@@ -33,7 +33,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class AgritechTreesHoppingPlanterBlock extends BaseEntityBlock {
-    public static final VoxelShape SHAPE = Block.box(0, 0.0, 0, 15.9, 15.9, 15.9);
+    public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.1, 15.0, 11.0, 15.0);
     public static final MapCodec<AgritechTreesHoppingPlanterBlock> CODEC = simpleCodec(AgritechTreesHoppingPlanterBlock::new);
 
     public AgritechTreesHoppingPlanterBlock(BlockBehaviour.Properties properties) {
