@@ -1,4 +1,4 @@
-![AgriTech: Trees](https://deonjonker.com/blm/agritech_trees/agritech_trees_banner.png)
+![AgriTech: Trees](https://deonjonker.com/blm/agritech_trees/agritech_trees_banner_2.png)
 
 AgriTech Trees introduces customizable planters that streamline tree growing and automated harvesting.
 
