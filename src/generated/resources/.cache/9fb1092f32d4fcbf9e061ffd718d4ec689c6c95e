@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-25T21:04:03.5870154	Recipes
+// 1.21.1	2025-07-31T17:56:51.0586246	Recipes
 ffd7735add3f17963203d255707b65f1bb250f9b data/agritechtrees/advancement/recipes/misc/acacia_hopping_planter.json
 93ff5d502c316af2646ff15ed5bfdc7c43676d47 data/agritechtrees/advancement/recipes/misc/acacia_planter.json
 5935e9c197dba9a28feda00d1e9257480392d3ee data/agritechtrees/advancement/recipes/misc/agritech_trees_hopping_planter_block.json
@@ -23,7 +23,7 @@ af31be1fb2019dbaff8277522d732b83aa452637 data/agritechtrees/advancement/recipes/
 1b9948c14e7c3302a25d534629723689930fe881 data/agritechtrees/advancement/recipes/misc/warped_planter.json
 2dce79a1faeea049c562ad879c8f9946cf199985 data/agritechtrees/recipe/acacia_hopping_planter.json
 b17ce8e1d8d41fc40db732d9ced4248fd830c007 data/agritechtrees/recipe/acacia_planter.json
-827322e3e7bd4d5ef83bfd2118c0688ef9e52c67 data/agritechtrees/recipe/agritech_trees_hopping_planter_block.json
+88c070310a468999ae9c7cdffe6a1adebc0753e3 data/agritechtrees/recipe/agritech_trees_hopping_planter_block.json
 efa850a7a541c2925120e57926ba7e5003d1af19 data/agritechtrees/recipe/agritech_trees_planter_block.json
 7843c0d4970ac042cf7980e614ad500334887853 data/agritechtrees/recipe/bamboo_hopping_planter.json
 c2701913fd44f785bc12782d0c34993ad0958e52 data/agritechtrees/recipe/bamboo_planter.json

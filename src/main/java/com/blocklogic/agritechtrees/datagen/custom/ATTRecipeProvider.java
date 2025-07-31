@@ -129,7 +129,7 @@ public class ATTRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.AGRITECH_TREES_HOPPING_PLANTER_BLOCK.get())
                 .requires(Items.HOPPER)
-                .requires(ModBlocks.AGRITECH_TREES_HOPPING_PLANTER_BLOCK.get())
+                .requires(ModBlocks.AGRITECH_TREES_PLANTER_BLOCK.get())
                 .unlockedBy("has_oak_planter", has(ModBlocks.AGRITECH_TREES_PLANTER_BLOCK.get()))
                 .save(recipeOutput);
 
