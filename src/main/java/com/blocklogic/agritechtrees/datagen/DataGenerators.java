@@ -2,6 +2,7 @@ package com.blocklogic.agritechtrees.datagen;
 
 import com.blocklogic.agritechtrees.AgritechTrees;
 import com.blocklogic.agritechtrees.datagen.custom.ATTBlockTagsProvider;
+import com.blocklogic.agritechtrees.datagen.custom.ATTItemModelProvider;
 import com.blocklogic.agritechtrees.datagen.custom.ATTLootTableProvider;
 import com.blocklogic.agritechtrees.datagen.custom.ATTRecipeProvider;
 import net.minecraft.core.HolderLookup;
@@ -30,6 +31,8 @@ public class DataGenerators {
 
         generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(ATTLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
+
+        generator.addProvider(event.includeClient(), new ATTItemModelProvider(packOutput, existingFileHelper));
 
         BlockTagsProvider blockTagsProvider = new ATTBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);

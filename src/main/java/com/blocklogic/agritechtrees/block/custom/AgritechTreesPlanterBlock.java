@@ -3,7 +3,9 @@ package com.blocklogic.agritechtrees.block.custom;
 import com.blocklogic.agritechtrees.block.entity.AgritechTreesPlanterBlockEntity;
 import com.blocklogic.agritechtrees.block.entity.ModBlockEntities;
 import com.blocklogic.agritechtrees.config.AgritechTreesConfig;
+import com.blocklogic.agritechtrees.item.ModItems;
 import com.blocklogic.agritechtrees.screen.custom.AgritechTreesPlanterMenu;
+import com.blocklogic.agritechtrees.util.PlanterUpgradeHandler;
 import com.blocklogic.agritechtrees.util.RegistryHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -74,6 +76,16 @@ public class AgritechTreesPlanterBlock extends BaseEntityBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (stack.getItem() == ModItems.HOPPING_UPGRADE.get()) {
+            if (!level.isClientSide()) {
+                boolean upgraded = PlanterUpgradeHandler.performUpgrade(level, pos, state, player, hand);
+                if (upgraded) {
+                    return ItemInteractionResult.SUCCESS;
+                }
+            }
+            return ItemInteractionResult.SUCCESS;
+        }
+
         if (level.getBlockEntity(pos) instanceof AgritechTreesPlanterBlockEntity planterBlockEntity) {
             if (player.isCrouching()) {
                 if (!level.isClientSide()) {

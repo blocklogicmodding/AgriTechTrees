@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "agritechtrees:item/hopping_upgrade"
+  }
+}
